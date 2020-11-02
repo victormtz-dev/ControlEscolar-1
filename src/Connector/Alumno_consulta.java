@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Connector;
+import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,7 +19,7 @@ public class Alumno_consulta {
     
     public void Alumno_consulta(){} //Metodo constructor
     
-    public void registrarAlumno (int operador, int id, String ap, String am, String nom, String sexo, String curp, String tutor, String correo, int grado, int grupo, String eliminar){
+    public void registrarAlumno (int operador, int id, String ap, String am, String nom, String sexo, String curp, String tutor, String correo, int grado, int grupo, String eliminar, int edad){
        
         //Se instancia la clase conexion
         Conexion con = new Conexion();
@@ -39,7 +40,8 @@ public class Alumno_consulta {
                     + correo + "', '"
                     + grado + "', '"
                     + grupo + "', '"
-                    + eliminar + "')";
+                    + eliminar + "', '"
+                    + edad + "')";
         
         
         try {
@@ -70,6 +72,45 @@ public class Alumno_consulta {
     }
     
     
+    
+    public int existeAlumno(String curp){
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Conexion con = new Conexion();
+        String ls_accion="";
+        
+        
+        ls_accion = "SELECT count(id_alumno) FROM alumno Where eliminar = 'NO' and curp = ?";
+        
+        
+          try {
+                       
+                        
+                      ps = (PreparedStatement) con.getConnection().prepareStatement(ls_accion);
+                      ps.setString(1,curp);
+                      rs = ps.executeQuery();
+                        
+                        if(rs.next()){
+                            return rs.getInt(1);
+                        }
+                                
+                        return 1;
+			
+                        
+                        //Cierra la conexion a la base de datos
+			//estatuto.close();
+			//con.disconnect();
+                        
+		} catch (SQLException e) {
+			//System.out.println(e.getMessage());
+			JOptionPane.showMessageDialog(null,
+					"No se Registro, verifique la consola para ver el error",
+					"Error", JOptionPane.ERROR_MESSAGE);
+                        return 1;
+		}
+    }
+    
     public void consultaAlumnosConTableModel(DefaultTableModel modelo) {
 
 		Conexion conex = new Conexion();
@@ -79,7 +120,7 @@ public class Alumno_consulta {
                         
                         //genera un query o consulta de la tabla especificada
                         //Y regresa el resultado de la consulta en un objeto ResultSet
-			ResultSet rs = estatuto.executeQuery("SELECT a.curp, a.apellido_paterno, a.apellido_materno, a.nombre, a.sexo, a.nombre_tutor, a.correo_tutor, gd.descripcion, gp.letra "
+			ResultSet rs = estatuto.executeQuery("SELECT a.curp, a.apellido_paterno, a.apellido_materno, a.nombre, a.sexo, a.edad, a.nombre_tutor, a.correo_tutor, gd.descripcion, gp.letra "
                                 + " FROM alumno as a, grado as gd, grupo as gp WHERE a.eliminar = 'NO' and a.id_grado = gd.id_grado and a.id_grupo = gp.id_grupo");
                         
                         
@@ -87,9 +128,9 @@ public class Alumno_consulta {
 			while (rs.next()) //Mueve el cursor al siguiente registro
                         {
 				// es para obtener los datos y almacenar las filas
-				Object[] fila = new Object[9];
+				Object[] fila = new Object[10];
 				// para llenar cada columna con lo datos almacenados
-				for (int i = 0; i < 9; i++) {
+				for (int i = 0; i < 10; i++) {
 					fila[i] = rs.getObject(i+1);                                        
                                 }
 				// Cargar los datos en filas a la tabla modelo

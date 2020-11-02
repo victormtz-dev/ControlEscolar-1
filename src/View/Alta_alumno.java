@@ -29,6 +29,7 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
     Grado grado = new Grado();
     Grupo grupo = new Grupo();
     Alumno_consulta ac = new Alumno_consulta();
+    String sexo_;
     
     /**
      * Creates new form Alta_alumno
@@ -39,8 +40,8 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         btn_registrar.setEnabled(false);
         
         
-        DefaultComboBoxModel CB_gd = new DefaultComboBoxModel(grado.mostrarGrado());
-        cbx_grado.setModel(CB_gd);
+       // DefaultComboBoxModel CB_gd = new DefaultComboBoxModel(grado.mostrarGrado());
+       // cbx_grado.setModel(CB_gd);
         
         DefaultComboBoxModel CB_gp = new DefaultComboBoxModel(grupo.mostrarGrupo());
         cbx_grupo.setModel(CB_gp);
@@ -96,20 +97,43 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         }
         
         
-        if(txt_sexo.getText().isEmpty()){
+       /* if(txt_sexo.getText().isEmpty()){
             lb_v_sexo.setText("*Campo requerido");
         } else {
             lb_v_sexo.setText("");
+        }*/
+        
+        if(txt_edad.getText().isEmpty()){
+        lbl_edad.setText("*Campo requerido");
+        txt_grado.setText("");
+        }
+        else{
+        lbl_edad.setText("");
         }
          
-        if(txt_ap.getText().isEmpty() || txt_am.getText().isEmpty() || 
+        if(txt_ap.getText().isEmpty() || txt_am.getText().isEmpty() || txt_edad.getText().isEmpty() ||
                 txt_nombre.getText().isEmpty() || txt_correo.getText().isEmpty() ||
                 txt_tutor.getText().isEmpty() || txt_curp.getText().isEmpty() ||
-                txt_sexo.getText().isEmpty() || lb_v_correo.getText().equals("*Correo Invalido")){
+                 lb_v_correo.getText().equals("*Correo Invalido")){
                 btn_registrar.setEnabled(false);
         }else {
                 btn_registrar.setEnabled(true);
         }
+    }
+    
+    
+    public void validadcaracteres (java.awt.event.KeyEvent evento){
+    
+        if(evento.getKeyChar() >= 33 && evento.getKeyChar() <= 64 
+                || evento.getKeyChar() >= 91 && evento.getKeyChar() <= 96
+                || evento.getKeyChar() >= 123 && evento.getKeyChar() <= 208
+                || evento.getKeyChar() >= 210 && evento.getKeyChar() <= 240
+                || evento.getKeyChar() >= 242 && evento.getKeyChar() <= 255
+                ){
+        evento.consume();
+        JOptionPane.showMessageDialog(null, "NO SE PERMITEN CARACTERES ESPECIALES","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+        }
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,6 +144,7 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         txt_ap = new javax.swing.JTextField();
@@ -131,12 +156,9 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txt_curp = new javax.swing.JTextField();
-        txt_sexo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbx_grado = new javax.swing.JComboBox<>();
         cbx_grupo = new javax.swing.JComboBox<>();
         txt_tutor = new javax.swing.JTextField();
         txt_correo = new javax.swing.JTextField();
@@ -148,6 +170,13 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         lb_v_sexo = new javax.swing.JLabel();
         lb_v_tutor = new javax.swing.JLabel();
         lb_v_correo = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txt_edad = new javax.swing.JTextField();
+        lbl_edad = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txt_grado = new javax.swing.JTextField();
+        rb_m = new javax.swing.JRadioButton();
+        rb_f = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_alumno = new javax.swing.JTable();
@@ -170,6 +199,9 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txt_ap.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_apKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_apKeyTyped(evt);
             }
@@ -215,15 +247,11 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_curpKeyReleased(evt);
             }
-        });
-        jPanel2.add(txt_curp, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 166, 170, -1));
-
-        txt_sexo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_sexoKeyReleased(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_curpKeyTyped(evt);
             }
         });
-        jPanel2.add(txt_sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 220, 170, -1));
+        jPanel2.add(txt_curp, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 166, 170, -1));
 
         jLabel6.setText("Nombre del tutor:");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(638, 28, -1, -1));
@@ -231,13 +259,8 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         jLabel7.setText("Correo:");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(638, 74, -1, -1));
 
-        jLabel8.setText("Grado:");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 146, -1, -1));
-
         jLabel9.setText("Grupo:");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(942, 146, -1, -1));
-
-        jPanel2.add(cbx_grado, new org.netbeans.lib.awtextra.AbsoluteConstraints(606, 167, 117, -1));
 
         jPanel2.add(cbx_grupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(908, 167, 103, -1));
 
@@ -264,7 +287,7 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
                 btn_registrarActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 246, -1, -1));
+        jPanel2.add(btn_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, -1, -1));
         jPanel2.add(lb_v_ap, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 25, -1, -1));
         jPanel2.add(lb_v_am, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 71, -1, -1));
         jPanel2.add(lb_v_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 120, -1, -1));
@@ -273,6 +296,57 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         jPanel2.add(lb_v_tutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(1059, 25, -1, -1));
         jPanel2.add(lb_v_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1059, 71, -1, -1));
 
+        jLabel10.setText("Edad:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+
+        txt_edad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_edadActionPerformed(evt);
+            }
+        });
+        txt_edad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_edadKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_edadKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_edadKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txt_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 170, -1));
+        jPanel2.add(lbl_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 264, -1, 30));
+
+        jLabel11.setText("Grado:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 150, -1, -1));
+
+        txt_grado.setEditable(false);
+        txt_grado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_gradoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txt_grado, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, 110, -1));
+
+        buttonGroup1.add(rb_m);
+        rb_m.setText("M");
+        rb_m.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rb_mMouseClicked(evt);
+            }
+        });
+        jPanel2.add(rb_m, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
+
+        buttonGroup1.add(rb_f);
+        rb_f.setText("F");
+        rb_f.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rb_fMouseClicked(evt);
+            }
+        });
+        jPanel2.add(rb_f, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
+
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         table_alumno.setModel(new javax.swing.table.DefaultTableModel(
@@ -280,7 +354,7 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "CURP", "Apellido Paterno", "Apellido Materno", "Nombre", "Sexo", "Tutor", "Correo", "Grado", "Grupo"
+                "CURP", "Apellido Paterno", "Apellido Materno", "Nombre", "Sexo", "Edad", "Tutor", "Correo", "Grado", "Grupo"
             }
         ));
         jScrollPane1.setViewportView(table_alumno);
@@ -335,11 +409,11 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
 
     private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
         // TODO add your handling code here:
-        Grado grado = (Grado) cbx_grado.getSelectedItem();
+       // Grado grado = (Grado) cbx_grado.getSelectedItem();
         Grupo grupo = (Grupo) cbx_grupo.getSelectedItem();
         
-        int id=0, grado_, grupo_;
-        String nombre_,ap_,am_,curp_, sexo_, correo_, tutor_ , eliminar_ = "NO";
+        int id=0, grado_=0, grupo_, edad_=0;
+        String nombre_,ap_,am_,curp_, correo_, tutor_ , eliminar_ = "NO";
         
         try{
             //se obtienen los valores de la caja de texto y combo box
@@ -347,14 +421,55 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
             am_ = txt_am.getText().toUpperCase();
             nombre_ = txt_nombre.getText().toUpperCase();
             curp_ = txt_curp.getText().toUpperCase();
-            sexo_ = txt_sexo.getText().toUpperCase();
+            //sexo_ = txt_sexo.getText().toUpperCase();
             correo_ = txt_correo.getText().toLowerCase();
             tutor_ = txt_tutor.getText().toUpperCase();       
-            grado_ = grado.getId();
+            //grado_ = grado.getId();
             grupo_ = grupo.getId();
+            edad_ = Integer.parseInt(txt_edad.getText());
         
+            
+            if(edad_ == 6){
+             
+             grado_ = 1;
+            }
+            
+            if(edad_ == 7){
+             
+             grado_ = 2;
+            }
+            
+            if(edad_ == 8){
+               
+              grado_ = 3;  
+            }
+            
+            if(edad_ == 9){
+              
+              grado_ = 4; 
+            }
+            
+            if(edad_ == 10){
+              
+              grado_ = 5;  
+            }
+            
+            if(edad_ == 11){
+              
+              grado_ = 6;  
+            }
+            
+            
+            if(ac.existeAlumno(txt_curp.getText()) == 0){
+                ac.registrarAlumno(1, id, ap_, am_, nombre_, sexo_, curp_, tutor_, correo_, grado_, grupo_, eliminar_, edad_);
+            }else{
+                JOptionPane.showMessageDialog(null, "ESTE ALUMNO YA EXISTE","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+            }
+            
+            
+            
             //Se mandan los datos al metodo
-            ac.registrarAlumno(1, id, ap_, am_, nombre_, sexo_, curp_, tutor_, correo_, grado_, grupo_, eliminar_);
+            
             
         }catch (Exception ex) {
 	   JOptionPane.showMessageDialog(null,
@@ -369,47 +484,34 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_registrarActionPerformed
 
     private void txt_apKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apKeyTyped
-        char validar = evt.getKeyChar();
+      
+        validadcaracteres(evt);
         
-        if (Character.isDigit(validar)){
-            getToolkit().beep();
-            evt.consume();
-            
-            JOptionPane.showMessageDialog(null, "NO SE PUEDE PROCESAR LA ENTRADA, ESCRIBA SOLO LETRAS ","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
-        } 
+       
     }//GEN-LAST:event_txt_apKeyTyped
 
     private void txt_amKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_amKeyTyped
-        char validar = evt.getKeyChar();
+       
         
-        if (Character.isDigit(validar)){
-            getToolkit().beep();
-            evt.consume();
-            
-            JOptionPane.showMessageDialog(null, "NO SE PUEDE PROCESAR LA ENTRADA, ESCRIBA SOLO LETRAS ","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
-        } 
+        validadcaracteres(evt);
+        
+       
     }//GEN-LAST:event_txt_amKeyTyped
 
     private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
-        char validar = evt.getKeyChar();
         
-        if (Character.isDigit(validar)){
-            getToolkit().beep();
-            evt.consume();
-            
-            JOptionPane.showMessageDialog(null, "NO SE PUEDE PROCESAR LA ENTRADA, ESCRIBA SOLO LETRAS ","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
-        } 
+        
+        validadcaracteres(evt);
+        
+       
     }//GEN-LAST:event_txt_nombreKeyTyped
 
     private void txt_tutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tutorKeyTyped
-        char validar = evt.getKeyChar();
+    
         
-        if (Character.isDigit(validar)){
-            getToolkit().beep();
-            evt.consume();
-            
-            JOptionPane.showMessageDialog(null, "NO SE PUEDE PROCESAR LA ENTRADA, ESCRIBA SOLO LETRAS ","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
-        } 
+        validadcaracteres(evt);
+        
+        
         
         
     }//GEN-LAST:event_txt_tutorKeyTyped
@@ -430,11 +532,6 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
        validar();
     }//GEN-LAST:event_txt_curpKeyReleased
 
-    private void txt_sexoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_sexoKeyReleased
-        // TODO add your handling code here:
-        validar();
-    }//GEN-LAST:event_txt_sexoKeyReleased
-
     private void txt_tutorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tutorKeyReleased
         // TODO add your handling code here:
         validar();
@@ -445,19 +542,117 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         validar();
     }//GEN-LAST:event_txt_correoKeyReleased
 
+    private void txt_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_edadActionPerformed
+     
+    }//GEN-LAST:event_txt_edadActionPerformed
+
+    private void txt_edadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_edadKeyReleased
+        // TODO add your handling code here:
+        validar();
+        
+         int edad_ = Integer.parseInt(txt_edad.getText());
+        
+        
+        if(edad_ == 1){
+        txt_grado.setText("");
+        }
+         
+        if(edad_ == 6){
+             txt_grado.setText("PRIMERO");
+             
+            }
+            
+            if(edad_ == 7){
+             txt_grado.setText("SEGUNDO");  
+             
+            }
+            
+            if(edad_ == 8){
+               txt_grado.setText("TERCERO");
+               
+            }
+            
+            if(edad_ == 9){
+              txt_grado.setText("CUARTO");
+               
+            }
+            
+            if(edad_ == 10){
+              txt_grado.setText("QUINTO");
+              
+            }
+            
+            if(edad_ == 11){
+              txt_grado.setText("SEXTO");
+             
+            }
+            
+            if(edad_ >= 2 && edad_ < 6  || edad_ > 11){
+            JOptionPane.showMessageDialog(null, "EDAD NO ACEPTADA","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+            txt_edad.setText("");
+            txt_grado.setText("");
+        }
+    }//GEN-LAST:event_txt_edadKeyReleased
+
+    private void txt_edadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_edadKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+       
+       
+        
+        if (Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            
+            JOptionPane.showMessageDialog(null, "NO SE PUEDE PROCESAR LA ENTRADA, ESCRIBA CARACTERES NUMERICOS","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+        } 
+        
+ 
+    }//GEN-LAST:event_txt_edadKeyTyped
+
+    private void txt_gradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_gradoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_gradoActionPerformed
+
+    private void txt_edadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_edadKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txt_edadKeyPressed
+
+    private void txt_curpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_curpKeyTyped
+        // TODO add your handling code here:
+       // validadcaracteres(evt);
+    }//GEN-LAST:event_txt_curpKeyTyped
+
+    private void rb_mMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb_mMouseClicked
+        // TODO add your handling code here:
+        sexo_ = rb_m.getLabel();
+    }//GEN-LAST:event_rb_mMouseClicked
+
+    private void rb_fMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb_fMouseClicked
+        // TODO add your handling code here:
+        sexo_ = rb_f.getLabel();
+    }//GEN-LAST:event_rb_fMouseClicked
+
+    private void txt_apKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apKeyReleased
+        // TODO add your handling code here:
+        validar();
+    }//GEN-LAST:event_txt_apKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_registrar;
-    private javax.swing.JComboBox<String> cbx_grado;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbx_grupo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -470,13 +665,17 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb_v_nombre;
     private javax.swing.JLabel lb_v_sexo;
     private javax.swing.JLabel lb_v_tutor;
+    private javax.swing.JLabel lbl_edad;
+    private javax.swing.JRadioButton rb_f;
+    private javax.swing.JRadioButton rb_m;
     private javax.swing.JTable table_alumno;
     private javax.swing.JTextField txt_am;
     private javax.swing.JTextField txt_ap;
     private javax.swing.JTextField txt_correo;
     private javax.swing.JTextField txt_curp;
+    private javax.swing.JTextField txt_edad;
+    private javax.swing.JTextField txt_grado;
     private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_sexo;
     private javax.swing.JTextField txt_tutor;
     // End of variables declaration//GEN-END:variables
 
@@ -493,6 +692,7 @@ public void mostrarDatosConTableModel() {
                 modelo.addColumn("A. Materno");
                 modelo.addColumn("Nombre");
                 modelo.addColumn("Sexo");
+                modelo.addColumn("Edad");
                 modelo.addColumn("Tutor");
                 modelo.addColumn("Correo");
                 modelo.addColumn("Grado");
@@ -522,7 +722,9 @@ public void limpiar(){
                 txt_correo.setText("");
                 txt_tutor.setText("");
                 txt_curp.setText("");
-		txt_sexo.setText("");
+		//txt_sexo.setText("");
+                txt_edad.setText("");
+                txt_grado.setText("");
                
 
 }
