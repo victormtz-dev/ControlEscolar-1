@@ -21,7 +21,7 @@ public class UserDAO {
     Conexion con=new Conexion();
     Connection access;
     
-    
+    //Metodo para verificar si el usuario existe
     public User userValidator(String username, String password){
         
         User user = new User();
@@ -30,8 +30,8 @@ public class UserDAO {
                 + "FROM usuario WHERE contrasena=? and nombre_usuario=?";
         
         try {
-            access=con.getConnection();
-            ps=access.prepareStatement(query);
+            access=con.getConnection(); //conexion a la base de datos
+            ps=access.prepareStatement(query); //lee la instruccion sql
             ps.setString(1, password);
             ps.setString(2, username);
             
@@ -46,7 +46,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
         }
-        //access=(Connection) con.disconnect();
+        
         return user;
     
 }

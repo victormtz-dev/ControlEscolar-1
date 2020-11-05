@@ -149,10 +149,80 @@ public class Alumno_consulta {
 	}
     
     
+    public void BuscarAlumno(DefaultTableModel modelo, String ap) {
+
+		Conexion conex = new Conexion();
+		try {
+                        //Crea un objeto Statemen, para poder ejecutar una instrucción SQL
+			Statement estatuto = conex.getConnection().createStatement();
+                        
+                        //genera un query o consulta de la tabla especificada
+                        //Y regresa el resultado de la consulta en un objeto ResultSet
+			ResultSet rs = estatuto.executeQuery("SELECT a.curp, a.apellido_paterno, a.apellido_materno, a.nombre, a.sexo, a.edad, gd.descripcion, gp.letra "
+                                + " FROM alumno as a, grado as gd, grupo as gp WHERE a.eliminar = 'NO' and a.id_grado = gd.id_grado and a.id_grupo = gp.id_grupo and a.apellido_paterno LIKE '%"+ap+"%'");
+                        
+                        
+                        //Se recorre la tabla virtual(ResultSet)en la memoria
+			while (rs.next()) //Mueve el cursor al siguiente registro
+                        {
+				// es para obtener los datos y almacenar las filas
+				Object[] fila = new Object[8];
+				// para llenar cada columna con lo datos almacenados
+				for (int i = 0; i < 8; i++) {
+					fila[i] = rs.getObject(i+1);                                        
+                                }
+				// Cargar los datos en filas a la tabla modelo
+				modelo.addRow(fila);
+			}
+                       
+                        estatuto.close();
+			conex.disconnect();
+
+		} catch (SQLException e) {
+//			System.out.println(e.getMessage());
+			JOptionPane.showMessageDialog(null, "Error al consultar y buscar", "Error",
+					JOptionPane.ERROR_MESSAGE);
+
+		}
+	}
     
     
-    
-    
+    public void BuscarAlumnoxGG(DefaultTableModel modelo, int grado, int grupo) {
+
+		Conexion conex = new Conexion();
+		try {
+                        //Crea un objeto Statemen, para poder ejecutar una instrucción SQL
+			Statement estatuto = conex.getConnection().createStatement();
+                        
+                        //genera un query o consulta de la tabla especificada
+                        //Y regresa el resultado de la consulta en un objeto ResultSet
+			ResultSet rs = estatuto.executeQuery("SELECT a.curp, a.apellido_paterno, a.apellido_materno, a.nombre, a.sexo, a.edad, gd.descripcion, gp.letra "
+                                + " FROM alumno as a, grado as gd, grupo as gp WHERE a.eliminar = 'NO' and a.id_grado = gd.id_grado and a.id_grupo = gp.id_grupo and a.id_grado ="+grado+" and a.id_grupo ="+grupo+" order by a.apellido_paterno asc");
+                        
+                        
+                        //Se recorre la tabla virtual(ResultSet)en la memoria
+			while (rs.next()) //Mueve el cursor al siguiente registro
+                        {
+				// es para obtener los datos y almacenar las filas
+				Object[] fila = new Object[8];
+				// para llenar cada columna con lo datos almacenados
+				for (int i = 0; i < 8; i++) {
+					fila[i] = rs.getObject(i+1);                                        
+                                }
+				// Cargar los datos en filas a la tabla modelo
+				modelo.addRow(fila);
+			}
+                       
+                        estatuto.close();
+			conex.disconnect();
+
+		} catch (SQLException e) {
+//			System.out.println(e.getMessage());
+			JOptionPane.showMessageDialog(null, "Error al consultar y buscar", "Error",
+					JOptionPane.ERROR_MESSAGE);
+
+		}
+	}
     
     
 }
