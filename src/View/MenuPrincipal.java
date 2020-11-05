@@ -43,33 +43,132 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btnUsuarios = new javax.swing.JButton();
+        btnPacientes = new javax.swing.JButton();
+        btnConfig = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(806, 546));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(638, 468));
+        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 806, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 518, Short.MAX_VALUE)
-        );
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        jLabel3.setText("Escuela Primaria: \"Francisco Perez\"");
+        jDesktopPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(606, 442, -1, -1));
 
-        jMenuBar1.setBackground(new java.awt.Color(0, 204, 51));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_escudo.png"))); // NOI18N
+        jDesktopPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 367, -1, -1));
+
+        btnUsuarios.setBackground(new java.awt.Color(108, 216, 158));
+        btnUsuarios.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnUsuarios.setForeground(new java.awt.Color(37, 51, 61));
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user_20px.png"))); // NOI18N
+        btnUsuarios.setToolTipText("");
+        btnUsuarios.setBorder(null);
+        btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUsuariosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUsuariosMouseExited(evt);
+            }
+        });
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
+        jDesktopPane1.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 194, 150, 50));
+
+        btnPacientes.setBackground(new java.awt.Color(108, 216, 158));
+        btnPacientes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnPacientes.setForeground(new java.awt.Color(37, 51, 61));
+        btnPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/patients_25px.png"))); // NOI18N
+        btnPacientes.setBorder(null);
+        btnPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPacientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPacientesMouseExited(evt);
+            }
+        });
+        btnPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPacientesActionPerformed(evt);
+            }
+        });
+        jDesktopPane1.add(btnPacientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(598, 194, 150, 50));
+
+        btnConfig.setBackground(new java.awt.Color(108, 216, 158));
+        btnConfig.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnConfig.setForeground(new java.awt.Color(37, 51, 61));
+        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/settings_20px.png"))); // NOI18N
+        btnConfig.setBorder(null);
+        btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnConfigMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnConfigMouseExited(evt);
+            }
+        });
+        btnConfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfigActionPerformed(evt);
+            }
+        });
+        jDesktopPane1.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 193, 150, 52));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setText("Hola, bienvenido.");
+        jDesktopPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        jLabel2.setText("¿Que desea hacer hoy?");
+        jDesktopPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, -1, -1));
+
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 806, -1));
+
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 102));
 
         jMenu1.setText("File");
+
+        jMenuItem2.setText("Salir");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Alumno");
+        jMenu2.setText("Alumnos");
 
         jMenuItem1.setText("Registrar Alumno");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -78,33 +177,31 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem1);
+        jMenu2.add(jSeparator2);
+
+        jMenuItem5.setText("Ver alumno");
+        jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
 
-        setJMenuBar(jMenuBar1);
+        jMenu3.setText("Grupos");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
-        );
+        jMenuItem4.setText("Ver grupo");
+        jMenu3.add(jMenuItem4);
+        jMenu3.add(jSeparator1);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Maestros");
+        jMenu4.setToolTipText("");
+        jMenuBar1.add(jMenu4);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        Alta_alumno ventana1 = new Alta_alumno();
-        jDesktopPane1.add(ventana1);
-        
-        ventana1.show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-public void windowCentered(JInternalFrame frame) {
+    public void windowCentered(JInternalFrame frame) {
         jDesktopPane1.add(frame);
 
         Dimension screenSize = jDesktopPane1.getSize();
@@ -112,6 +209,62 @@ public void windowCentered(JInternalFrame frame) {
         frame.setLocation((screenSize.width - formP.width) / 2, ((screenSize.height) - formP.height) / 2);
         frame.show();
     }
+    
+    
+ 
+    
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        Alta_alumno ventana1 = new Alta_alumno();
+        jDesktopPane1.add(ventana1);
+        
+        ventana1.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void btnPacientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacientesMouseEntered
+
+    }//GEN-LAST:event_btnPacientesMouseEntered
+
+    private void btnPacientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacientesMouseExited
+
+    }//GEN-LAST:event_btnPacientesMouseExited
+
+    private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPacientesActionPerformed
+
+    }//GEN-LAST:event_btnPacientesActionPerformed
+
+    private void btnConfigMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseEntered
+
+    }//GEN-LAST:event_btnConfigMouseEntered
+
+    private void btnConfigMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseExited
+
+    }//GEN-LAST:event_btnConfigMouseExited
+
+    private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
+
+    }//GEN-LAST:event_btnConfigActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+
+    }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void btnUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseExited
+
+    }//GEN-LAST:event_btnUsuariosMouseExited
+
+    private void btnUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseEntered
+
+    }//GEN-LAST:event_btnUsuariosMouseEntered
+
 
 public void close() {
         Object[] opciones = {"Aceptar", "Cancelar"};
@@ -159,11 +312,25 @@ public void close() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnConfig;
+    public javax.swing.JButton btnPacientes;
+    private javax.swing.JButton btnUsuarios;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     // End of variables declaration//GEN-END:variables
 
 }

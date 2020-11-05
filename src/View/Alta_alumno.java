@@ -460,7 +460,8 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
             }
             
             
-            if(ac.existeAlumno(txt_curp.getText()) == 0){
+            if(ac.existeAlumno(txt_curp.getText()) == 0){ //Revisa si el alumno existe o no
+                //Se mandan los datos al metodo
                 ac.registrarAlumno(1, id, ap_, am_, nombre_, sexo_, curp_, tutor_, correo_, grado_, grupo_, eliminar_, edad_);
             }else{
                 JOptionPane.showMessageDialog(null, "ESTE ALUMNO YA EXISTE","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
@@ -468,7 +469,7 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
             
             
             
-            //Se mandan los datos al metodo
+            
             
             
         }catch (Exception ex) {

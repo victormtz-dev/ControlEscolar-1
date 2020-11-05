@@ -48,8 +48,7 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jDesktopPane1 =  new javax.swing.JDesktopPane() { @Override protected void paintComponent(Graphics g) { super.paintComponent(g); g.setColor(UIUtils.COLOR_BACKGROUND); g.fillRect(0, 0, getWidth(), getHeight()); } };
-        ;
+        jDesktopPane1 =  new javax.swing.JDesktopPane() { @Override protected void paintComponent(Graphics g) { super.paintComponent(g); g.setColor(UIUtils.COLOR_BACKGROUND); g.fillRect(0, 0, getWidth(), getHeight()); } }; ;
         btnUsuarios = new javax.swing.JButton();
         btnPacientes = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
@@ -251,7 +250,7 @@ public class Home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,14 +265,14 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void windowCentered(JInternalFrame frame) {
+   /* public void windowCentered(JInternalFrame frame) {
         jDesktopPane1.add(frame);
 
         Dimension screenSize = jDesktopPane1.getSize();
         Dimension formP = frame.getSize();
         frame.setLocation((screenSize.width - formP.width) / 2, ((screenSize.height) - formP.height) / 2);
         frame.show();
-    }
+    }*/
 
     public void close() {
         Object[] opciones = {"Aceptar", "Cancelar"};
