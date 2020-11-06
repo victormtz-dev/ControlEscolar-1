@@ -25,18 +25,19 @@ import Connector.*;
  *
  * @author victormanuel
  */
-public class Ver_grupos extends javax.swing.JInternalFrame {
+public class Grado_materias extends javax.swing.JInternalFrame {
 
     Grado grado = new Grado();
     Grupo grupo = new Grupo();
     Alumno_consulta ac = new Alumno_consulta();
+    Materia_consulta mc = new Materia_consulta();
     String sexo_;
     Conexion con = new Conexion();
     
     /**
      * Creates new form Alta_alumno
      */
-    public Ver_grupos() {
+    public Grado_materias() {
         initComponents();
        
 
@@ -45,8 +46,8 @@ public class Ver_grupos extends javax.swing.JInternalFrame {
        DefaultComboBoxModel CB_gd = new DefaultComboBoxModel(grado.mostrarGrado());
         cbx_grado.setModel(CB_gd);
         
-        DefaultComboBoxModel CB_gp = new DefaultComboBoxModel(grupo.mostrarGrupo());
-        cbx_grupo.setModel(CB_gp);
+//        DefaultComboBoxModel CB_gp = new DefaultComboBoxModel(grupo.mostrarGrupo());
+//        cbx_grupo.setModel(CB_gp);
         
 //        mostrarDatosConTableModel();
        
@@ -68,8 +69,6 @@ public class Ver_grupos extends javax.swing.JInternalFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         Panel1 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        cbx_grupo = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_alumno = new javax.swing.JTable();
@@ -98,9 +97,6 @@ public class Ver_grupos extends javax.swing.JInternalFrame {
         Panel1.setMinimumSize(new java.awt.Dimension(0, 0));
         Panel1.setPreferredSize(new java.awt.Dimension(955, 468));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel9.setText("Grupo:");
-
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel11.setText("Grado:");
 
@@ -109,7 +105,7 @@ public class Ver_grupos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "CURP", "Apellido Paterno", "Apellido Materno", "Nombre", "Sexo", "Edad", "Grado", "Grupo"
+                "Nombre de la materia", "Grado"
             }
         ));
         jScrollPane1.setViewportView(table_alumno);
@@ -157,7 +153,7 @@ public class Ver_grupos extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Total de alumno:");
+        jLabel1.setText("Total de materias:");
 
         txt_total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_total.setBorder(null);
@@ -170,20 +166,9 @@ public class Ver_grupos extends javax.swing.JInternalFrame {
             Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel1Layout.createSequentialGroup()
                 .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(Panel1Layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbx_grado, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbx_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Panel1Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(Panel1Layout.createSequentialGroup()
                         .addGap(130, 130, 130)
                         .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,30 +180,29 @@ public class Ver_grupos extends javax.swing.JInternalFrame {
                                 .addGap(110, 110, 110)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(402, 402, 402)
-                        .addComponent(btn_salir1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_salir1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Panel1Layout.createSequentialGroup()
+                        .addGap(258, 258, 258)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(113, 113, 113))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel1Layout.createSequentialGroup()
+                .addComponent(jLabel11)
+                .addGap(57, 57, 57)
+                .addComponent(cbx_grado, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(375, 375, 375))
         );
         Panel1Layout.setVerticalGroup(
             Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel1Layout.createSequentialGroup()
-                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(cbx_grado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(Panel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel9))
-                    .addGroup(Panel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(cbx_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Panel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
+                .addGap(31, 31, 31)
+                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbx_grado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Panel1Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
@@ -267,7 +251,7 @@ public class Ver_grupos extends javax.swing.JInternalFrame {
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         // TODO add your handling code here:
       Grado grado = (Grado) cbx_grado.getSelectedItem();
-        Grupo grupo = (Grupo) cbx_grupo.getSelectedItem();
+//        Grupo grupo = (Grupo) cbx_grupo.getSelectedItem();
         
         int id=0, grado_=0, grupo_, edad_=0;
     
@@ -276,18 +260,27 @@ public class Ver_grupos extends javax.swing.JInternalFrame {
             //se obtienen los valores de la caja de texto y combo box
      
             grado_ = grado.getId();
-            grupo_ = grupo.getId();
+//            grupo_ = grupo.getId();
 
- 
+        
+            
+            
+          
                 //Se mandan los datos al metodo
-               buscarxGrupo(grado_,grupo_);
-
+               materiasxgrado(grado_);
+           
+            
+            
+            
+            
+            
+            
         }catch (Exception ex) {
 	   JOptionPane.showMessageDialog(null,
 	   "Error en el Ingreso de Datos", "Error",
 	    JOptionPane.ERROR_MESSAGE);
         } finally{
-            cantidadAlumnos();
+            cantidadMaterias();
         }
         
     }//GEN-LAST:event_btn_buscarActionPerformed
@@ -311,10 +304,8 @@ public class Ver_grupos extends javax.swing.JInternalFrame {
     public javax.swing.JButton btn_salir1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbx_grado;
-    private javax.swing.JComboBox<String> cbx_grupo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -322,54 +313,16 @@ public class Ver_grupos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_total;
     // End of variables declaration//GEN-END:variables
 
-//public void mostrarDatosConTableModel() {
-//	
-//        
-//                DefaultTableModel modelo = new DefaultTableModel();
-//                table_alumno.setModel(modelo);
-//
-//               
-//
-//                modelo.addColumn("CURP");
-//                modelo.addColumn("A. Paterno");
-//                modelo.addColumn("A. Materno");
-//                modelo.addColumn("Nombre");
-//                modelo.addColumn("Sexo");
-//                modelo.addColumn("Edad");
-//                modelo.addColumn("Grado");
-//                modelo.addColumn("Grupo");
-// 
-//              
-//
-//                 //Ordenar las columnas
-//                TableRowSorter<TableModel> ordena =new TableRowSorter<TableModel>(modelo);
-//                table_alumno.setRowSorter(ordena);
-//                               
-//               
-//		/* enviamos el objeto TableModel, como mandamos el objeto podemos
-//		  manipularlo desde el metodo */
-//		
-//                
-//                ac.consultaAlumnosConTableModel(modelo);
-//
-//            
-//	}
-
-public void buscarxGrupo(int x, int y) {
+public void materiasxgrado(int x) {
 
         
 
                 DefaultTableModel modelo = new DefaultTableModel();
                 table_alumno.setModel(modelo);
 
-                modelo.addColumn("CURP");
-                modelo.addColumn("A. Paterno");
-                modelo.addColumn("A. Materno");
-                modelo.addColumn("Nombre");
-                modelo.addColumn("Sexo");
-                modelo.addColumn("Edad");
+                modelo.addColumn("Nombre de la materia");
                 modelo.addColumn("Grado");
-                modelo.addColumn("Grupo");
+              
            
              
  
@@ -381,7 +334,7 @@ public void buscarxGrupo(int x, int y) {
                 /* enviamos el objeto TableModel, como mandamos el objeto podemos
 		  manipularlo desde el metodo */
 		     
-                ac.BuscarAlumnoxGG(modelo, x, y);
+                mc.Buscarmateria(modelo, x);
                 
 
             
@@ -389,23 +342,21 @@ public void buscarxGrupo(int x, int y) {
 
 
    
-public void cantidadAlumnos(){
+public void cantidadMaterias(){
        int total=0;
        String mostrartotal="", ls_accion="";
     
      Grado grado = (Grado) cbx_grado.getSelectedItem();
-        Grupo grupo = (Grupo) cbx_grupo.getSelectedItem();
+    
         
         int id=0, grado_=0, grupo_, edad_=0;
 
             grado_ = grado.getId();
-            grupo_ = grupo.getId();
-        
-        //mostrarDatosConTableModel();
+
            
         try{
-        ls_accion= "SELECT count(id_alumno)"
-                    + "FROM alumno WHERE eliminar = 'NO' and id_grado = '"+grado_+"' and id_grupo = '"+grupo_+"'";
+        ls_accion= "SELECT count(id_materia)"
+                    + "FROM materia WHERE id_grado = '"+grado_+"'";
         Statement st2 = con.getConnection().createStatement(); 
         ResultSet rs2 = st2.executeQuery(ls_accion); 
         

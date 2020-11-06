@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package View;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -27,105 +28,110 @@ import Connector.*;
  */
 public class Alta_alumno extends javax.swing.JInternalFrame {
 
+    //Se instancia la clase conexion
     Grado grado = new Grado();
     Grupo grupo = new Grupo();
     Alumno_consulta ac = new Alumno_consulta();
+
+    //varibale para seleccionar el sexo
     String sexo_;
-    
+    int contadorAlumnos=0;
+    Conexion con = new Conexion();
     /**
      * Creates new form Alta_alumno
      */
     public Alta_alumno() {
         initComponents();
-       
-        btn_registrar.setEnabled(false);
         
-        
-       // DefaultComboBoxModel CB_gd = new DefaultComboBoxModel(grado.mostrarGrado());
-       // cbx_grado.setModel(CB_gd);
-        
-        DefaultComboBoxModel CB_gp = new DefaultComboBoxModel(grupo.mostrarGrupo());
+        btn_registrar.setEnabled(false); //boton inhabilitado
+
+        DefaultComboBoxModel CB_gp = new DefaultComboBoxModel(grupo.mostrarGrupo()); // va a la clase grupo y me trae los datos para llenar el comobobox
         cbx_grupo.setModel(CB_gp);
-        
-//        mostrarDatosConTableModel();
+
         validar();
 
-        
     }
-    public void validar(){
-        
-        if(txt_ap.getText().isEmpty()){
+
+    public void validar() { //validacion de campos vacios
+
+        if (txt_ap.getText().isEmpty()) {
             lb_v_ap.setText("*");
-         
-        } else { 
+
+        } else {
             lb_v_ap.setText("");
         }
-        
-        if(txt_am.getText().isEmpty()){
+
+        if (txt_am.getText().isEmpty()) {
             lb_v_am.setText("*");
         } else {
             lb_v_am.setText("");
         }
-        
-        
-        if(txt_nombre.getText().isEmpty()){
+
+        if (txt_nombre.getText().isEmpty()) {
             lb_v_nombre.setText("*");
         } else {
             lb_v_nombre.setText("");
         }
-        
-        
-        if(txt_correo.getText().isEmpty()){
+
+        if (txt_correo.getText().isEmpty()) {
             lb_v_correo.setText("*");
         } else if (!txt_correo.getText().contains("@") || !txt_correo.getText().contains(".")) {
             lb_v_correo.setText("*Correo Invalido");
         } else {
             lb_v_correo.setText("");
         }
-        
-        
-        if(txt_tutor.getText().isEmpty()){
+
+        if (txt_tutor.getText().isEmpty()) {
             lb_v_tutor.setText("*");
         } else {
             lb_v_tutor.setText("");
         }
-        
-        
-        if(txt_curp.getText().isEmpty()){
+
+        if (txt_curp.getText().isEmpty()) {
             lb_v_curp.setText("*");
         } else {
             lb_v_curp.setText("");
         }
-        
-        
-       if(rb_f.getLabel().isEmpty() || rb_m.getLabel().isEmpty() ){
+
+        if (rb_f.getLabel().isEmpty() || rb_m.getLabel().isEmpty()) {
             lb_v_sexo.setText("*");
         } else {
             lb_v_sexo.setText("");
         }
-        
-        if(txt_edad.getText().isEmpty()){
-        lbl_v_edad.setText("*");
-        txt_grado.setText("");
+
+        if (txt_edad.getText().isEmpty()) {
+            lbl_v_edad.setText("*");
+            txt_grado.setText("");
+        } else {
+            lbl_v_edad.setText("");
         }
-        else{
-        lbl_v_edad.setText("");
-        }
-         
-        if(txt_ap.getText().isEmpty() || txt_am.getText().isEmpty() || txt_edad.getText().isEmpty() ||
-                txt_nombre.getText().isEmpty() || txt_correo.getText().isEmpty() ||
-                txt_tutor.getText().isEmpty() || txt_curp.getText().isEmpty() ||
-                 lb_v_correo.getText().equals("*Correo Invalido")){
-                btn_registrar.setEnabled(false);
-        }else {
-                btn_registrar.setEnabled(true);
+
+        if (txt_ap.getText().isEmpty() || txt_am.getText().isEmpty() || txt_edad.getText().isEmpty()
+                || txt_nombre.getText().isEmpty() || txt_correo.getText().isEmpty()
+                || txt_tutor.getText().isEmpty() || txt_curp.getText().isEmpty()
+                || lb_v_correo.getText().equals("*Correo Invalido")) {
+            btn_registrar.setEnabled(false);
+        } else {
+            btn_registrar.setEnabled(true);
         }
     }
-    
-    
-    public void validadcaracteres (java.awt.event.KeyEvent evento){
-    
-        if(evento.getKeyChar() >= 33 && evento.getKeyChar() <= 64 
+
+    public void validadcaracteres(java.awt.event.KeyEvent evento) { //validacion de caracteres
+
+        if (evento.getKeyChar() >= 33 && evento.getKeyChar() <= 64
+                || evento.getKeyChar() >= 91 && evento.getKeyChar() <= 96
+                || evento.getKeyChar() >= 123 && evento.getKeyChar() <= 208
+                || evento.getKeyChar() >= 210 && evento.getKeyChar() <= 240
+                || evento.getKeyChar() >= 242 && evento.getKeyChar() <= 255) {
+            evento.consume();
+            JOptionPane.showMessageDialog(null, "NO SE PERMITEN CARACTERES ESPECIALES", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }
+ public void validadcaracterescurp (java.awt.event.KeyEvent evento){
+    //valida con los valores ascii
+        if(evento.getKeyChar() >= 33 && evento.getKeyChar() <= 47
+                || evento.getKeyChar() >= 58 && evento.getKeyChar() <= 64
                 || evento.getKeyChar() >= 91 && evento.getKeyChar() <= 96
                 || evento.getKeyChar() >= 123 && evento.getKeyChar() <= 208
                 || evento.getKeyChar() >= 210 && evento.getKeyChar() <= 240
@@ -134,6 +140,8 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         evento.consume();
         JOptionPane.showMessageDialog(null, "NO SE PERMITEN CARACTERES ESPECIALES","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
         }
+        
+        
         
     }
     /**
@@ -159,25 +167,30 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         txt_curp = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        cbx_grupo = new javax.swing.JComboBox<>();
         txt_tutor = new javax.swing.JTextField();
         txt_correo = new javax.swing.JTextField();
-        btn_registrar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txt_edad = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        txt_grado = new javax.swing.JTextField();
         rb_m = new javax.swing.JRadioButton();
         rb_f = new javax.swing.JRadioButton();
         lb_v_tutor = new javax.swing.JLabel();
-        lb_v_correo = new javax.swing.JLabel();
         lb_v_ap = new javax.swing.JLabel();
         lb_v_am = new javax.swing.JLabel();
         lb_v_nombre = new javax.swing.JLabel();
         lb_v_curp = new javax.swing.JLabel();
         lb_v_sexo = new javax.swing.JLabel();
         lbl_v_edad = new javax.swing.JLabel();
+        btn_registrar = new javax.swing.JButton();
+        btn_limpiar = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        lb_v_correo = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        cbx_grupo = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txt_grado = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -187,7 +200,8 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         setTitle("Registro de Alumnos");
         setMinimumSize(new java.awt.Dimension(955, 468));
         setNormalBounds(new java.awt.Rectangle(0, 0, 107, 0));
-        setPreferredSize(new java.awt.Dimension(638, 468));
+        setPreferredSize(new java.awt.Dimension(955, 468));
+        setRequestFocusEnabled(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -196,6 +210,7 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         Panel1.setBackground(new java.awt.Color(255, 255, 255));
         Panel1.setMinimumSize(new java.awt.Dimension(0, 0));
         Panel1.setPreferredSize(new java.awt.Dimension(955, 468));
+        Panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txt_ap.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -205,6 +220,7 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
                 txt_apKeyTyped(evt);
             }
         });
+        Panel1.add(txt_ap, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 73, 170, -1));
 
         txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -214,6 +230,7 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
                 txt_nombreKeyTyped(evt);
             }
         });
+        Panel1.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 171, 170, -1));
 
         txt_am.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -223,21 +240,27 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
                 txt_amKeyTyped(evt);
             }
         });
+        Panel1.add(txt_am, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 122, 170, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel1.setText("Apellido Paterno:");
+        Panel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 76, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel2.setText("Apellido Materno:");
+        Panel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 125, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel3.setText("Nombre (s):");
+        Panel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 174, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel4.setText("CURP:");
+        Panel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 220, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel5.setText("Sexo:");
+        Panel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 274, -1, -1));
 
         txt_curp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -247,15 +270,15 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
                 txt_curpKeyTyped(evt);
             }
         });
+        Panel1.add(txt_curp, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 217, 166, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel6.setText("Nombre del tutor:");
+        Panel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel7.setText("Correo:");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel9.setText("Grupo:");
+        Panel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
 
         txt_tutor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -265,22 +288,18 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
                 txt_tutorKeyTyped(evt);
             }
         });
+        Panel1.add(txt_tutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 248, -1));
 
         txt_correo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_correoKeyReleased(evt);
             }
         });
-
-        btn_registrar.setText("Registrar");
-        btn_registrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_registrarActionPerformed(evt);
-            }
-        });
+        Panel1.add(txt_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 173, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel10.setText("Edad:");
+        Panel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 322, -1, -1));
 
         txt_edad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -298,6 +317,168 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
                 txt_edadKeyTyped(evt);
             }
         });
+        Panel1.add(txt_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 320, 163, -1));
+
+        rb_m.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(rb_m);
+        rb_m.setText("M");
+        rb_m.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rb_mMouseClicked(evt);
+            }
+        });
+        Panel1.add(rb_m, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 271, -1, -1));
+
+        rb_f.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(rb_f);
+        rb_f.setText("F");
+        rb_f.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rb_fMouseClicked(evt);
+            }
+        });
+        Panel1.add(rb_f, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 271, -1, -1));
+
+        lb_v_tutor.setForeground(new java.awt.Color(204, 0, 0));
+        lb_v_tutor.setText("jLabel8");
+        Panel1.add(lb_v_tutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 80, -1, -1));
+
+        lb_v_ap.setForeground(new java.awt.Color(204, 0, 0));
+        lb_v_ap.setText("jLabel8");
+        Panel1.add(lb_v_ap, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 76, -1, -1));
+
+        lb_v_am.setForeground(new java.awt.Color(204, 0, 0));
+        lb_v_am.setText("jLabel8");
+        Panel1.add(lb_v_am, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 125, -1, -1));
+
+        lb_v_nombre.setForeground(new java.awt.Color(204, 0, 0));
+        lb_v_nombre.setText("jLabel12");
+        Panel1.add(lb_v_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 177, -1, -1));
+
+        lb_v_curp.setForeground(new java.awt.Color(204, 0, 0));
+        lb_v_curp.setText("jLabel13");
+        Panel1.add(lb_v_curp, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 220, -1, -1));
+
+        lb_v_sexo.setForeground(new java.awt.Color(204, 0, 0));
+        lb_v_sexo.setText("jLabel14");
+        Panel1.add(lb_v_sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 275, -1, -1));
+
+        lbl_v_edad.setForeground(new java.awt.Color(204, 0, 0));
+        lbl_v_edad.setText("jLabel15");
+        Panel1.add(lbl_v_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 323, -1, -1));
+
+        btn_registrar.setBackground(new java.awt.Color(8, 59, 102));
+        btn_registrar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_registrar.setForeground(new java.awt.Color(204, 204, 204));
+        btn_registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agregar.png"))); // NOI18N
+        btn_registrar.setText("Registrar");
+        btn_registrar.setToolTipText("");
+        btn_registrar.setBorder(null);
+        btn_registrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_registrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_registrarMouseExited(evt);
+            }
+        });
+        btn_registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrarActionPerformed(evt);
+            }
+        });
+        Panel1.add(btn_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 150, 38));
+
+        btn_limpiar.setBackground(new java.awt.Color(8, 59, 102));
+        btn_limpiar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_limpiar.setForeground(new java.awt.Color(204, 204, 204));
+        btn_limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/borrar.png"))); // NOI18N
+        btn_limpiar.setText("Limpiar");
+        btn_limpiar.setToolTipText("");
+        btn_limpiar.setBorder(null);
+        btn_limpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_limpiarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_limpiarMouseExited(evt);
+            }
+        });
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
+        Panel1.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, 150, 38));
+
+        btn_salir.setBackground(new java.awt.Color(8, 59, 102));
+        btn_salir.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_salir.setForeground(new java.awt.Color(204, 204, 204));
+        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salir.png"))); // NOI18N
+        btn_salir.setText("Salir");
+        btn_salir.setToolTipText("");
+        btn_salir.setBorder(null);
+        btn_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_salirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_salirMouseExited(evt);
+            }
+        });
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salirActionPerformed(evt);
+            }
+        });
+        Panel1.add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, 150, 38));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del alumno", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 0, 11), new java.awt.Color(0, 102, 102))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 388, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 277, Short.MAX_VALUE)
+        );
+
+        Panel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 400, 300));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del tutor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 0, 11), new java.awt.Color(0, 102, 102))); // NOI18N
+
+        lb_v_correo.setForeground(new java.awt.Color(204, 0, 0));
+        lb_v_correo.setText("jLabel12");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(365, Short.MAX_VALUE)
+                .addComponent(lb_v_correo)
+                .addGap(43, 43, 43))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(62, Short.MAX_VALUE)
+                .addComponent(lb_v_correo)
+                .addContainerGap())
+        );
+
+        Panel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 460, 110));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Grado y Grupo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 0, 11), new java.awt.Color(0, 102, 102))); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        jLabel9.setText("Grupo:");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel11.setText("Grado:");
@@ -309,221 +490,57 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
             }
         });
 
-        rb_m.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(rb_m);
-        rb_m.setText("M");
-        rb_m.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rb_mMouseClicked(evt);
-            }
-        });
-
-        rb_f.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(rb_f);
-        rb_f.setText("F");
-        rb_f.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rb_fMouseClicked(evt);
-            }
-        });
-
-        lb_v_tutor.setForeground(new java.awt.Color(204, 0, 0));
-        lb_v_tutor.setText("jLabel8");
-
-        lb_v_correo.setForeground(new java.awt.Color(204, 0, 0));
-        lb_v_correo.setText("jLabel12");
-
-        lb_v_ap.setForeground(new java.awt.Color(204, 0, 0));
-        lb_v_ap.setText("jLabel8");
-
-        lb_v_am.setForeground(new java.awt.Color(204, 0, 0));
-        lb_v_am.setText("jLabel8");
-
-        lb_v_nombre.setForeground(new java.awt.Color(204, 0, 0));
-        lb_v_nombre.setText("jLabel12");
-
-        lb_v_curp.setForeground(new java.awt.Color(204, 0, 0));
-        lb_v_curp.setText("jLabel13");
-
-        lb_v_sexo.setForeground(new java.awt.Color(204, 0, 0));
-        lb_v_sexo.setText("jLabel14");
-
-        lbl_v_edad.setForeground(new java.awt.Color(204, 0, 0));
-        lbl_v_edad.setText("jLabel15");
-
-        javax.swing.GroupLayout Panel1Layout = new javax.swing.GroupLayout(Panel1);
-        Panel1.setLayout(Panel1Layout);
-        Panel1Layout.setHorizontalGroup(
-            Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel1Layout.createSequentialGroup()
-                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Panel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(54, 54, 54)
-                                .addComponent(txt_ap, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lb_v_ap))
-                            .addGroup(Panel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(52, 52, 52)
-                                .addComponent(txt_am, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lb_v_am))
-                            .addComponent(jLabel5)
-                            .addGroup(Panel1Layout.createSequentialGroup()
-                                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(85, 85, 85)
-                                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(Panel1Layout.createSequentialGroup()
-                                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_curp, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(rb_m))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lb_v_sexo)
-                                            .addComponent(lb_v_curp)))
-                                    .addGroup(Panel1Layout.createSequentialGroup()
-                                        .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lb_v_nombre))))))
-                    .addGroup(Panel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel10)
-                        .addGap(119, 119, 119)
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rb_f)
-                            .addComponent(txt_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_v_edad)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel1Layout.createSequentialGroup()
-                        .addComponent(btn_registrar)
-                        .addGap(157, 157, 157))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel1Layout.createSequentialGroup()
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel9)))
-                        .addGap(18, 18, 18)
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(cbx_grupo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_grado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(Panel1Layout.createSequentialGroup()
-                                    .addComponent(txt_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lb_v_correo))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Panel1Layout.createSequentialGroup()
-                                    .addComponent(txt_tutor, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lb_v_tutor))))
-                        .addGap(58, 58, 58))))
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbx_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_grado, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(126, 126, 126))
         );
-        Panel1Layout.setVerticalGroup(
-            Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel1Layout.createSequentialGroup()
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_ap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lb_v_ap))
-                            .addGroup(Panel1Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel1)))
-                        .addGap(29, 29, 29)
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Panel1Layout.createSequentialGroup()
-                                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(txt_am, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lb_v_am))
-                                    .addGroup(Panel1Layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jLabel2)))
-                                .addGap(29, 29, 29)
-                                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(Panel1Layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jLabel3))
-                                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lb_v_nombre, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(26, 26, 26)
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Panel1Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel4))
-                            .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_curp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lb_v_curp)))
-                        .addGap(34, 34, 34)
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Panel1Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel5))
-                            .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(rb_f)
-                                .addComponent(lb_v_sexo)
-                                .addComponent(rb_m))))
-                    .addGroup(Panel1Layout.createSequentialGroup()
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txt_tutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_v_tutor))
-                        .addGap(29, 29, 29)
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txt_correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_v_correo))
-                        .addGap(52, 52, 52)
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(txt_grado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(cbx_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(25, 25, 25)
-                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_v_edad)
-                    .addComponent(btn_registrar)
-                    .addComponent(jLabel10))
-                .addContainerGap(75, Short.MAX_VALUE))
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txt_grado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbx_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addContainerGap())
         );
+
+        Panel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 400, 110));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 937, Short.MAX_VALUE)
+            .addComponent(Panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(Panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 937, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleName("Alta de Alumnos");
@@ -531,114 +548,32 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
-        // TODO add your handling code here:
-       // Grado grado = (Grado) cbx_grado.getSelectedItem();
-        Grupo grupo = (Grupo) cbx_grupo.getSelectedItem();
-        
-        int id=0, grado_=0, grupo_, edad_=0;
-        String nombre_,ap_,am_,curp_, correo_, tutor_ , eliminar_ = "NO";
-        
-        try{
-            //se obtienen los valores de la caja de texto y combo box
-            ap_ = txt_ap.getText().toUpperCase();
-            am_ = txt_am.getText().toUpperCase();
-            nombre_ = txt_nombre.getText().toUpperCase();
-            curp_ = txt_curp.getText().toUpperCase();
-            //sexo_ = txt_sexo.getText().toUpperCase();
-            correo_ = txt_correo.getText().toLowerCase();
-            tutor_ = txt_tutor.getText().toUpperCase();       
-            //grado_ = grado.getId();
-            grupo_ = grupo.getId();
-            edad_ = Integer.parseInt(txt_edad.getText());
-        
-            
-            if(edad_ == 6){
-             
-             grado_ = 1;
-            }
-            
-            if(edad_ == 7){
-             
-             grado_ = 2;
-            }
-            
-            if(edad_ == 8){
-               
-              grado_ = 3;  
-            }
-            
-            if(edad_ == 9){
-              
-              grado_ = 4; 
-            }
-            
-            if(edad_ == 10){
-              
-              grado_ = 5;  
-            }
-            
-            if(edad_ == 11){
-              
-              grado_ = 6;  
-            }
-            
-            
-            if(ac.existeAlumno(txt_curp.getText()) == 0){ //Revisa si el alumno existe o no
-                //Se mandan los datos al metodo
-                ac.registrarAlumno(1, id, ap_, am_, nombre_, sexo_, curp_, tutor_, correo_, grado_, grupo_, eliminar_, edad_);
-            }else{
-                JOptionPane.showMessageDialog(null, "ESTE ALUMNO YA EXISTE","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
-            }
-            
-            
-            
-            
-            
-            
-        }catch (Exception ex) {
-	   JOptionPane.showMessageDialog(null,
-	   "Error en el Ingreso de Datos, Revise si no hay campos sin rellenar", "Error",
-	    JOptionPane.ERROR_MESSAGE);
-        } finally{
-        
-//           mostrarDatosConTableModel();
-	   limpiar();
-           validar();
-        }
-    }//GEN-LAST:event_btn_registrarActionPerformed
-
     private void txt_apKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apKeyTyped
-      
+
         validadcaracteres(evt);
-        
-       
+
+
     }//GEN-LAST:event_txt_apKeyTyped
 
     private void txt_amKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_amKeyTyped
-       
-        
+
         validadcaracteres(evt);
-        
-       
+
+
     }//GEN-LAST:event_txt_amKeyTyped
 
     private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
-        
-        
+
         validadcaracteres(evt);
-        
-       
+
+
     }//GEN-LAST:event_txt_nombreKeyTyped
 
     private void txt_tutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tutorKeyTyped
-    
-        
+
         validadcaracteres(evt);
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_txt_tutorKeyTyped
 
     private void txt_amKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_amKeyReleased
@@ -653,8 +588,8 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
 
     private void txt_curpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_curpKeyReleased
         // TODO add your handling code here:
-        
-       validar();
+
+        validar();
     }//GEN-LAST:event_txt_curpKeyReleased
 
     private void txt_tutorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tutorKeyReleased
@@ -668,52 +603,52 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_correoKeyReleased
 
     private void txt_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_edadActionPerformed
-     
+
     }//GEN-LAST:event_txt_edadActionPerformed
 
     private void txt_edadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_edadKeyReleased
         // TODO add your handling code here:
         validar();
-        
-         int edad_ = Integer.parseInt(txt_edad.getText());
-        
-        
-        if(edad_ == 1){
-        txt_grado.setText("");
+
+        int edad_ = Integer.parseInt(txt_edad.getText()); //me trae el texto que este en el texfiield
+
+        //veririfica la edad y añade a la caja de texto el grado, segun su edad
+        if (edad_ == 1) {
+            txt_grado.setText("");
         }
-         
-        if(edad_ == 6){
-             txt_grado.setText("PRIMERO");
-             
-            }
-            
-            if(edad_ == 7){
-             txt_grado.setText("SEGUNDO");  
-             
-            }
-            
-            if(edad_ == 8){
-               txt_grado.setText("TERCERO");
-               
-            }
-            
-            if(edad_ == 9){
-              txt_grado.setText("CUARTO");
-               
-            }
-            
-            if(edad_ == 10){
-              txt_grado.setText("QUINTO");
-              
-            }
-            
-            if(edad_ == 11){
-              txt_grado.setText("SEXTO");
-             
-            }
-            
-            if(edad_ >= 2 && edad_ < 6  || edad_ > 11){
-            JOptionPane.showMessageDialog(null, "EDAD NO ACEPTADA","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+
+        if (edad_ == 6) {
+            txt_grado.setText("PRIMERO");
+
+        }
+
+        if (edad_ == 7) {
+            txt_grado.setText("SEGUNDO");
+
+        }
+
+        if (edad_ == 8) {
+            txt_grado.setText("TERCERO");
+
+        }
+
+        if (edad_ == 9) {
+            txt_grado.setText("CUARTO");
+
+        }
+
+        if (edad_ == 10) {
+            txt_grado.setText("QUINTO");
+
+        }
+
+        if (edad_ == 11) {
+            txt_grado.setText("SEXTO");
+
+        }
+
+        if (edad_ >= 2 && edad_ < 6 || edad_ > 11) {
+            JOptionPane.showMessageDialog(null, "EDAD NO ACEPTADA", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
             txt_edad.setText("");
             txt_grado.setText("");
         }
@@ -721,18 +656,19 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
 
     private void txt_edadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_edadKeyTyped
         // TODO add your handling code here:
+
         char validar = evt.getKeyChar();
-       
-       
-        
-        if (Character.isLetter(validar)){
+
+        if (Character.isLetter(validar)) { //validacion de solo numeros
             getToolkit().beep();
             evt.consume();
-            
-            JOptionPane.showMessageDialog(null, "NO SE PUEDE PROCESAR LA ENTRADA, ESCRIBA CARACTERES NUMERICOS","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
-        } 
+
+            JOptionPane.showMessageDialog(null, "NO SE PUEDE PROCESAR LA ENTRADA, ESCRIBA CARACTERES NUMERICOS", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+        }
         
- 
+        validadcaracterescurp(evt);
+
+
     }//GEN-LAST:event_txt_edadKeyTyped
 
     private void txt_gradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_gradoActionPerformed
@@ -741,22 +677,30 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
 
     private void txt_edadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_edadKeyPressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txt_edadKeyPressed
 
     private void txt_curpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_curpKeyTyped
         // TODO add your handling code here:
-       // validadcaracteres(evt);
+        validadcaracterescurp(evt);
+        // valida que solo entren 18 caracteres
+        if(txt_curp.getText().length() >= 18){
+        evt.consume();
+        }
     }//GEN-LAST:event_txt_curpKeyTyped
 
     private void rb_mMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb_mMouseClicked
         // TODO add your handling code here:
-        sexo_ = rb_m.getLabel();
+        if (rb_m.isSelected()) {
+            sexo_ = "M";
+        }
     }//GEN-LAST:event_rb_mMouseClicked
 
     private void rb_fMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb_fMouseClicked
         // TODO add your handling code here:
-        sexo_ = rb_f.getLabel();
+        if (rb_f.isSelected()) {
+            sexo_ = "F";
+        }
     }//GEN-LAST:event_rb_fMouseClicked
 
     private void txt_apKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apKeyReleased
@@ -764,10 +708,126 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         validar();
     }//GEN-LAST:event_txt_apKeyReleased
 
+    private void btn_registrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registrarMouseEntered
+
+    }//GEN-LAST:event_btn_registrarMouseEntered
+
+    private void btn_registrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registrarMouseExited
+
+    }//GEN-LAST:event_btn_registrarMouseExited
+
+    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
+        Grupo grupo = (Grupo) cbx_grupo.getSelectedItem(); //selecciona el dato que este en el combobox
+
+        int id = 0, grado_ = 0, grupo_, edad_ = 0;
+        String nombre_, ap_, am_, curp_, correo_, tutor_, eliminar_ = "NO";
+
+        
+        cantidadAlumnos();
+        //verifica si ya hay 25 alumnos registrados
+        if(contadorAlumnos < 25){
+        
+        
+        try {
+            //se obtienen los valores de la caja de texto y combo box
+            ap_ = txt_ap.getText().toUpperCase();
+            am_ = txt_am.getText().toUpperCase();
+            nombre_ = txt_nombre.getText().toUpperCase();
+            curp_ = txt_curp.getText().toUpperCase();
+            correo_ = txt_correo.getText().toLowerCase();
+            tutor_ = txt_tutor.getText().toUpperCase();
+            grupo_ = grupo.getId();
+            edad_ = Integer.parseInt(txt_edad.getText());
+
+            // If's para revisas la edad del niño y que se asigne un grado
+            if (edad_ == 6) {
+
+                grado_ = 1;
+            }
+
+            if (edad_ == 7) {
+
+                grado_ = 2;
+            }
+
+            if (edad_ == 8) {
+
+                grado_ = 3;
+            }
+
+            if (edad_ == 9) {
+
+                grado_ = 4;
+            }
+
+            if (edad_ == 10) {
+
+                grado_ = 5;
+            }
+
+            if (edad_ == 11) {
+
+                grado_ = 6;
+            }
+            if(txt_curp.getText().length() < 18){
+              JOptionPane.showMessageDialog(null, "CURP INVALIDA.", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);   
+              txt_curp.setText("");
+             }else{
+            if (ac.existeAlumno(txt_curp.getText()) == 0) { //Revisa si el alumno existe o no
+                //Se mandan los datos al metodo
+                ac.registrarAlumno(1, id, ap_, am_, nombre_, sexo_, curp_, tutor_, correo_, grado_, grupo_, eliminar_, edad_);
+            } else {
+                JOptionPane.showMessageDialog(null, "ESTE ALUMNO YA EXISTE", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,
+                    "Error en el Ingreso de Datos, Revise si no hay campos sin rellenar", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        } finally {
+
+            limpiar();
+            validar();
+        }
+        }else{
+        JOptionPane.showMessageDialog(null, "EL GRUPO ESTA LLENO,LIMITE DE 25 ALUMNOS POR SALON", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+        limpiar();
+        validar();
+        }
+    }//GEN-LAST:event_btn_registrarActionPerformed
+
+    private void btn_limpiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_limpiarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_limpiarMouseEntered
+
+    private void btn_limpiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_limpiarMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_limpiarMouseExited
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btn_limpiarActionPerformed
+
+    private void btn_salirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_salirMouseEntered
+
+    private void btn_salirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_salirMouseExited
+
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btn_salirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel1;
-    private javax.swing.JButton btn_registrar;
+    public javax.swing.JButton btn_limpiar;
+    public javax.swing.JButton btn_registrar;
+    public javax.swing.JButton btn_salir;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbx_grupo;
     private javax.swing.JLabel jLabel1;
@@ -781,6 +841,9 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lb_v_am;
     private javax.swing.JLabel lb_v_ap;
     private javax.swing.JLabel lb_v_correo;
@@ -801,66 +864,89 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_tutor;
     // End of variables declaration//GEN-END:variables
 
-//public void mostrarDatosConTableModel() {
-//	
-//        
-//                DefaultTableModel modelo = new DefaultTableModel();
-//                table_alumno.setModel(modelo);
-//
-//               
-//
-//                modelo.addColumn("CURP");
-//                modelo.addColumn("A. Paterno");
-//                modelo.addColumn("A. Materno");
-//                modelo.addColumn("Nombre");
-//                modelo.addColumn("Sexo");
-//                modelo.addColumn("Edad");
-//                modelo.addColumn("Tutor");
-//                modelo.addColumn("Correo");
-//                modelo.addColumn("Grado");
-//                modelo.addColumn("Grupo");
-// 
-//              
-//
-//                 //Ordenar las columnas
-//                TableRowSorter<TableModel> ordena =new TableRowSorter<TableModel>(modelo);
-//                table_alumno.setRowSorter(ordena);
-//                               
-//               
-//		/* enviamos el objeto TableModel, como mandamos el objeto podemos
-//		  manipularlo desde el metodo */
-//		
-//                
-//                ac.consultaAlumnosConTableModel(modelo);
-//
-//            
-//	}
+    public void limpiar() { //limpia los campos de texto
+        txt_ap.setText("");
+        txt_am.setText("");
+        txt_nombre.setText("");
+        txt_correo.setText("");
+        txt_tutor.setText("");
+        txt_curp.setText("");
+        //txt_sexo.setText("");
+        cbx_grupo.setSelectedIndex(0);
+        rb_m.setSelected(false);
+        rb_f.setSelected(false);
+        txt_edad.setText("");
+        txt_grado.setText("");
 
+    }
+//metodo para verificar la cantidad de alumnos
+    public void cantidadAlumnos(){
+       int total=0;
+       String mostrartotal="", ls_accion="";
+    
+        
+        Grupo grupo = (Grupo) cbx_grupo.getSelectedItem();
+        
+        int id=0, grado_=0, grupo_, edad_=0;
 
-public void limpiar(){
-                txt_ap.setText("");
-		txt_am.setText("");
-                txt_nombre.setText("");
-                txt_correo.setText("");
-                txt_tutor.setText("");
-                txt_curp.setText("");
-		//txt_sexo.setText("");
-                txt_edad.setText("");
-                txt_grado.setText("");
-               
+           
+            grupo_ = grupo.getId();
+            edad_ = Integer.parseInt(txt_edad.getText());
+            
+            if (edad_ == 6) {
+
+                grado_ = 1;
+            }
+
+            if (edad_ == 7) {
+
+                grado_ = 2;
+            }
+
+            if (edad_ == 8) {
+
+                grado_ = 3;
+            }
+
+            if (edad_ == 9) {
+
+                grado_ = 4;
+            }
+
+            if (edad_ == 10) {
+
+                grado_ = 5;
+            }
+
+            if (edad_ == 11) {
+
+                grado_ = 6;
+            }
+        
+        //mostrarDatosConTableModel();
+           
+        try{
+        ls_accion= "SELECT count(id_alumno)"
+                    + "FROM alumno WHERE eliminar = 'NO' and id_grado = '"+grado_+"' and id_grupo = '"+grupo_+"'";
+        Statement st2 = con.getConnection().createStatement(); 
+        ResultSet rs2 = st2.executeQuery(ls_accion); 
+        
+        while (rs2.next ())
+        {
+            total = rs2.getInt(1);
+            mostrartotal = String.valueOf(total);
+        }
+              contadorAlumnos = total;
+
+        
+      }catch (Exception ex) {
+	   JOptionPane.showMessageDialog(null,
+	   "Error al consultar la cantidad de alumnos en el grupo.", "Error",
+	    JOptionPane.ERROR_MESSAGE);
+  }
 
 }
-
    
-
-
-
-
-
-
-
-
-
-
-
+    
+    
 }
