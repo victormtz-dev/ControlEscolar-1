@@ -268,6 +268,11 @@ public class BME_alumno extends javax.swing.JInternalFrame {
 
         txt_curp.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_curp.setBorder(null);
+        txt_curp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_curpActionPerformed(evt);
+            }
+        });
         txt_curp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_curpKeyReleased(evt);
@@ -826,6 +831,10 @@ public class BME_alumno extends javax.swing.JInternalFrame {
         }
         validadcaracterescurp(evt);
     }//GEN-LAST:event_txt_gradoKeyTyped
+
+    private void txt_curpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_curpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_curpActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
