@@ -128,7 +128,6 @@ public class enviar_calificaciones1 extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("Enviar calificaciones");
         setMinimumSize(new java.awt.Dimension(955, 468));
-        setNormalBounds(new java.awt.Rectangle(0, 0, 107, 0));
         setPreferredSize(new java.awt.Dimension(955, 468));
         setRequestFocusEnabled(false);
 
@@ -182,7 +181,6 @@ public class enviar_calificaciones1 extends javax.swing.JInternalFrame {
         btn_enviar.setBackground(new java.awt.Color(8, 59, 102));
         btn_enviar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btn_enviar.setForeground(new java.awt.Color(204, 204, 204));
-        btn_enviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cancelar.png"))); // NOI18N
         btn_enviar.setText("Enviar");
         btn_enviar.setToolTipText("");
         btn_enviar.setBorder(null);
@@ -315,6 +313,7 @@ public class enviar_calificaciones1 extends javax.swing.JInternalFrame {
     private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
         // TODO add your handling code here:
         try {
+            //Conexion con el servidor de gmail
             Properties props = new Properties();
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");
@@ -322,16 +321,17 @@ public class enviar_calificaciones1 extends javax.swing.JInternalFrame {
             props.setProperty("mail.smtp.auth", "true");
 
             Session session = Session.getDefaultInstance(props);
-
+               //Se pone el correo del remitente o de donde se va enviar, junto con la contraseña
             String correoRemitente = "victormma18@gmail.com";
             String passwordRemitente = "thevicmtz131298";
             String correoReceptor = txt_desti.getText();
             String asunto = txt_asunto.getText();
             String mensaje = txa_msj.getText();
-
+                //Acepta codigo en html y utf8
             BodyPart texto = new MimeBodyPart();
             texto.setContent(mensaje, "text/html");
-
+            //Abre el explorador de archivos para poder seleccionar el pdf, obteniendo su ruta
+            //y luego el nombre
             BodyPart adjunto = new MimeBodyPart();
             adjunto.setDataHandler(new DataHandler(new FileDataSource(txt_archivo.getText())));
             adjunto.setFileName(nom);
@@ -342,7 +342,8 @@ public class enviar_calificaciones1 extends javax.swing.JInternalFrame {
 
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(correoRemitente));
-
+            
+            //Se ordenan los valores que se va enviar mediante el smtp
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(correoReceptor));
             message.setSubject(asunto);
             message.setContent(miltiParte);

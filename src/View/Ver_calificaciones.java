@@ -416,28 +416,30 @@ public class Ver_calificaciones extends javax.swing.JInternalFrame {
     private void btn_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reporteActionPerformed
         try {
             // TODO add your handling code here:
+            //conexion con la base de datos
             Conexion con = new Conexion();
             Connection conn = (Connection) con.getConnection();
             
+            //obtiene la curp del alumno que se va imprimir su pdf
             String curp_;
            curp_ = "'"+txt_curp.getText()+"'";
             
            System.out.println(curp_);
-           
+           //se busca la ruta en donde se encuentra el reporte para enviarle los datos
             JasperReport reporte = null;
-            String path = "src\\Reportes\\calificacion1.jasper";
+            String path = "src\\Reportes\\cal1.jasper";
             
+            //Se manda la curp para que el reporte pueda traer las calificaciones de esa curp
             Map parametro = new HashMap();
             parametro.put("curp_entrada", curp_);
             
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-            
+            //el reporte recibe los parametros
             JasperPrint jprint = JasperFillManager.fillReport(reporte,parametro,conn);
             
             JasperViewer view = new JasperViewer(jprint, false);
-            
-            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            
+            //se abre la ventana mostrando nuestro pdf
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);  
             view.setVisible(true);
         
         } catch (JRException ex) {

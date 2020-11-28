@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cal1_subreport3" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3540a75d-d3a5-4068-aa47-842a82504682">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="curp_entrada" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select round(avg(calif1),0) as m1 , round(avg(calif2),0) as m2,
+round(avg(calif3),0) as m3,round(avg(calif4),0) as m4,
+round(avg(calif5),0) as m5,round(avg(calif6),0) as m6,
+round(avg(calif7),0) as m7,round(avg(calif8),0) as m8,
+round(avg(calif9),0) as m9, round(
+((round(avg(calif1),0)+ round(avg(calif2),0) + round(avg(calif3),0) + round(avg(calif4),0) + round(avg(calif5),0) + round(avg(calif6),0) + round(avg(calif7),0) + round(avg(calif8),0) +round(avg(calif9),0)
+)/9),0) as promedio
+from calificaciones1
+where curp = $P!{curp_entrada} and id_periodo between 1 and 3;]]>
+	</queryString>
+	<field name="m1" class="java.lang.Double"/>
+	<field name="m2" class="java.lang.Double"/>
+	<field name="m3" class="java.lang.Double"/>
+	<field name="m4" class="java.lang.Double"/>
+	<field name="m5" class="java.lang.Double"/>
+	<field name="m6" class="java.lang.Double"/>
+	<field name="m7" class="java.lang.Double"/>
+	<field name="m8" class="java.lang.Double"/>
+	<field name="m9" class="java.lang.Double"/>
+	<field name="promedio" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="201" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="23" height="20" uuid="9f2e1a12-0ce6-46ea-a1ac-5ddc4bb1e58d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{m1}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="20" width="23" height="20" uuid="41abb08d-d6c9-4b64-8764-e4dc92d19666"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{m2}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="40" width="23" height="20" uuid="921258e5-5ee9-4560-89c4-61eca3392114"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{m3}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="60" width="23" height="20" uuid="2781eebe-320b-4c92-93fe-9c7e76f5edba"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{m4}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="80" width="23" height="20" uuid="798a1ecd-4aec-404f-aa63-c6c089bf9c02"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{m5}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="100" width="23" height="20" uuid="c7812fbb-3342-44f0-9485-3a0fac80b5f1"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{m6}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="120" width="23" height="20" uuid="e65b14e3-ff96-405d-9b0e-4e87e31c9644"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{m7}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="140" width="23" height="20" uuid="1bb838b5-9a04-44e1-96a2-82a7b5ec19d7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{m8}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="160" width="23" height="20" uuid="7532d58f-a209-4b05-9f8a-4c1f36840d4d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{m9}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="180" width="23" height="20" uuid="11b5e074-a665-42de-99a8-acedc36f71fc"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{promedio}.intValue()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
