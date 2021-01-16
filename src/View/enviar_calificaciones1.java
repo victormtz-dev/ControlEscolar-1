@@ -322,8 +322,8 @@ public class enviar_calificaciones1 extends javax.swing.JInternalFrame {
 
             Session session = Session.getDefaultInstance(props);
                //Se pone el correo del remitente o de donde se va enviar, junto con la contraseña
-            String correoRemitente = "victormma18@gmail.com";
-            String passwordRemitente = "thevicmtz131298";
+            String correoRemitente = "escuela.FranciscoPerez@gmail.com";
+            String passwordRemitente = "franciscoperezrios_1 ";
             String correoReceptor = txt_desti.getText();
             String asunto = txt_asunto.getText();
             String mensaje = txa_msj.getText();

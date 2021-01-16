@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cal1_subreport3" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3540a75d-d3a5-4068-aa47-842a82504682">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="curp_entrada" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select round(avg(calif1),0) as materia1_periodo1 , round(avg(calif2),0) as materia2_periodo1,
+round(avg(calif3),0) as materia3_periodo1,round(avg(calif4),0) as materia4_periodo1,
+round(avg(calif5),0) as materia5_periodo1,round(avg(calif6),0) as materia6_periodo1,
+round(avg(calif7),0) as materia7_periodo1,round(avg(calif8),0) as materia8_periodo1,round(
+((round(avg(calif1),0)+ round(avg(calif2),0) + round(avg(calif3),0) + round(avg(calif4),0) + round(avg(calif5),0) + round(avg(calif6),0) + round(avg(calif7),0) + round(avg(calif8),0))/8),0) as promedio
+from calificaciones6
+where curp = $P!{curp_entrada} and id_periodo = '2';]]>
+	</queryString>
+	<field name="materia1_periodo1" class="java.lang.Double"/>
+	<field name="materia2_periodo1" class="java.lang.Double"/>
+	<field name="materia3_periodo1" class="java.lang.Double"/>
+	<field name="materia4_periodo1" class="java.lang.Double"/>
+	<field name="materia5_periodo1" class="java.lang.Double"/>
+	<field name="materia6_periodo1" class="java.lang.Double"/>
+	<field name="materia7_periodo1" class="java.lang.Double"/>
+	<field name="materia8_periodo1" class="java.lang.Double"/>
+	<field name="promedio" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="160" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="23" height="20" uuid="28df8cef-bde3-406f-8513-7c364b4ef46b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materia1_periodo1}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="20" width="23" height="20" uuid="c6b473f0-bb77-4040-b42f-b9b3b1547903"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materia2_periodo1}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="40" width="23" height="20" uuid="ebaa38ab-75be-4aca-af08-81440b4aa6f3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materia3_periodo1}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="60" width="23" height="20" uuid="0ded125e-ea05-4bc4-b08c-7717c451ae2c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materia4_periodo1}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="80" width="23" height="20" uuid="0dc82801-46b2-4c03-b005-a664ef512de7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materia5_periodo1}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="100" width="23" height="20" uuid="1126b8be-4aa9-470b-ba27-be43b89b6678"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materia6_periodo1}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="120" width="23" height="20" uuid="3a1c1737-e36b-4909-91b8-899fdd5baf11"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materia7_periodo1}.intValue()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="140" width="23" height="20" uuid="b73fc496-e7de-4330-9555-b7b5ac273bac"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materia8_periodo1}.intValue()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

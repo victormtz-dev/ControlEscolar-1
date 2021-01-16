@@ -98,6 +98,7 @@ public class Ver_calificaciones extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_reporte = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -250,7 +251,7 @@ public class Ver_calificaciones extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Trimestre", "Mes", "CURP", "E. socioemocional", "Artes", "C. del medio", "Lengua materna", "Matematicas", "Ed. Fisica", "F.C.E.", "Vida saludable", "Ingles"
+                "Trimestre", "Mes", "CURP", "Español", "Matematicas", "Exp. de la naturaleza y sociedad", "Formacion civica y etica", "Educacion artistica", "Ed. Fisica"
             }
         ));
         table_cal.setGridColor(new java.awt.Color(0, 0, 0));
@@ -288,14 +289,21 @@ public class Ver_calificaciones extends javax.swing.JInternalFrame {
         jLabel2.setText("Calificaciones:");
         Panel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, -1, -1));
 
-        btn_reporte.setText("Reporte");
-        btn_reporte.setActionCommand("Reporte");
+        btn_reporte.setText("Boleta Interna");
         btn_reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_reporteActionPerformed(evt);
             }
         });
-        Panel1.add(btn_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
+        Panel1.add(btn_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+
+        jButton1.setText("Boleta externa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        Panel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -433,7 +441,8 @@ public class Ver_calificaciones extends javax.swing.JInternalFrame {
             Map parametro = new HashMap();
             parametro.put("curp_entrada", curp_);
             
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+           // reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+           reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/cal1.jasper"));
             //el reporte recibe los parametros
             JasperPrint jprint = JasperFillManager.fillReport(reporte,parametro,conn);
             
@@ -448,6 +457,42 @@ public class Ver_calificaciones extends javax.swing.JInternalFrame {
                 
         
     }//GEN-LAST:event_btn_reporteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+             try {
+            // TODO add your handling code here:
+            //conexion con la base de datos
+            Conexion con = new Conexion();
+            Connection conn = (Connection) con.getConnection();
+            
+            //obtiene la curp del alumno que se va imprimir su pdf
+            String curp_;
+           curp_ = "'"+txt_curp.getText()+"'";
+            
+           System.out.println(curp_);
+           //se busca la ruta en donde se encuentra el reporte para enviarle los datos
+            JasperReport reporte = null;
+            String path = "src\\Reportes\\Boletas\\boleta1.jasper";
+            
+            //Se manda la curp para que el reporte pueda traer las calificaciones de esa curp
+            Map parametro = new HashMap();
+            parametro.put("curp_entrada", curp_);
+            
+           // reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+           reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Boletas/boleta1.jasper"));
+            //el reporte recibe los parametros
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,parametro,conn);
+            
+            JasperViewer view = new JasperViewer(jprint, false);
+            //se abre la ventana mostrando nuestro pdf
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);  
+            view.setVisible(true);
+        
+        } catch (JRException ex) {
+            Logger.getLogger(Ver_calificaciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
           
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -457,6 +502,7 @@ public class Ver_calificaciones extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_reporte;
     public javax.swing.JButton btn_salir;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -515,15 +561,13 @@ public void MostrarTablaCal(String x) {
                 modelo.addColumn("Trimestre");
                 modelo.addColumn("Mes");
                 modelo.addColumn("CURP");
-                modelo.addColumn("E. sociemocional");
-                modelo.addColumn("Artes");
-                modelo.addColumn("C. del medio");
-                modelo.addColumn("Lengua materna");
+                modelo.addColumn("Español");
                 modelo.addColumn("Matematicas");
+                modelo.addColumn("Exp. de la naturaleza y la sociedad");
+                modelo.addColumn("Formacion civica y etica");
+                modelo.addColumn("Educacion artistica");
                 modelo.addColumn("Edu. fisica");
-                modelo.addColumn("F.C.E.");
-                modelo.addColumn("Vida saludable");
-                modelo.addColumn("Ingles");
+  
              
  
                  //Ordenar las columnas

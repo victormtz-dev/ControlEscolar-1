@@ -20,6 +20,17 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import Model.*;
 import Connector.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -84,6 +95,8 @@ public class Ver_calificaciones6 extends javax.swing.JInternalFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         table_cal = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -236,7 +249,7 @@ public class Ver_calificaciones6 extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Trimestre", "Mes", "CURP", "E. socioemocional", "C. naturales", "Geografia", "Lengua materna", "Matematicas", "Ed. Fisica", "F.C.E.", "Vida saludable", "Ingles", "Historia", "Artes"
+                "Trimestre", "Mes", "CURP"
             }
         ));
         table_cal.setGridColor(new java.awt.Color(0, 0, 0));
@@ -248,13 +261,29 @@ public class Ver_calificaciones6 extends javax.swing.JInternalFrame {
         });
         jScrollPane4.setViewportView(table_cal);
 
-        Panel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 880, 128));
+        Panel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 880, 128));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 153, 153));
         jLabel2.setText("Calificaciones:");
-        Panel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, -1, -1));
+        Panel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, -1, -1));
+
+        jButton1.setText("Boleta Interna");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        Panel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+
+        jButton2.setText("Boleta Externa");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        Panel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -371,6 +400,78 @@ public class Ver_calificaciones6 extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_table_calMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            //conexion con la base de datos
+            Conexion con = new Conexion();
+            Connection conn = (Connection) con.getConnection();
+            
+            //obtiene la curp del alumno que se va imprimir su pdf
+            String curp_;
+           curp_ = "'"+txt_curp.getText()+"'";
+            
+           System.out.println(curp_);
+           //se busca la ruta en donde se encuentra el reporte para enviarle los datos
+            JasperReport reporte = null;
+            String path = "src\\Reportes\\cal1_1_4_2.jasper";
+            
+            //Se manda la curp para que el reporte pueda traer las calificaciones de esa curp
+            Map parametro = new HashMap();
+            parametro.put("curp_entrada", curp_);
+            
+            //reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/cal1_1_4_2.jasper"));
+            //el reporte recibe los parametros
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,parametro,conn);
+            
+            JasperViewer view = new JasperViewer(jprint, false);
+            //se abre la ventana mostrando nuestro pdf
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);  
+            view.setVisible(true);
+        
+        } catch (JRException ex) {
+            Logger.getLogger(Ver_calificaciones6.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            //conexion con la base de datos
+            Conexion con = new Conexion();
+            Connection conn = (Connection) con.getConnection();
+            
+            //obtiene la curp del alumno que se va imprimir su pdf
+            String curp_;
+           curp_ = "'"+txt_curp.getText()+"'";
+            
+           System.out.println(curp_);
+           //se busca la ruta en donde se encuentra el reporte para enviarle los datos
+            JasperReport reporte = null;
+            String path = "src\\Reportes\\Boletas\\boleta1_4_1.jasper";
+            
+            //Se manda la curp para que el reporte pueda traer las calificaciones de esa curp
+            Map parametro = new HashMap();
+            parametro.put("curp_entrada", curp_);
+            
+            //reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Boletas/boleta1_4_1.jasper"));
+            //el reporte recibe los parametros
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,parametro,conn);
+            
+            JasperViewer view = new JasperViewer(jprint, false);
+            //se abre la ventana mostrando nuestro pdf
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);  
+            view.setVisible(true);
+        
+        } catch (JRException ex) {
+            Logger.getLogger(Ver_calificaciones6.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel1;
@@ -378,6 +479,8 @@ public class Ver_calificaciones6 extends javax.swing.JInternalFrame {
     public javax.swing.JButton btn_cancelar;
     public javax.swing.JButton btn_salir;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -430,20 +533,17 @@ public void MostrarTablaCal(String x) {
                 DefaultTableModel modelo = new DefaultTableModel();
                 table_cal.setModel(modelo);
 
-                modelo.addColumn("Trimestre");
+                       modelo.addColumn("Trimestre");
                 modelo.addColumn("Mes");
                 modelo.addColumn("CURP");
-                modelo.addColumn("E. sociemocional");
-                modelo.addColumn("C. naturales.");
-                modelo.addColumn("Geografia");
-                modelo.addColumn("Lengua materna");
+                modelo.addColumn("Español");
                 modelo.addColumn("Matematicas");
-                modelo.addColumn("Edu. fisica");
-                modelo.addColumn("F.C.E.");
-                modelo.addColumn("Vida saludable");
-                modelo.addColumn("Ingles");
+                modelo.addColumn("Ciencias naturales");
+                modelo.addColumn("Geografia");
                 modelo.addColumn("Historia");
-                modelo.addColumn("Artes");
+                modelo.addColumn("Formacion civica y etica");
+                modelo.addColumn("Educacion artistica");
+                modelo.addColumn("Edu. fisica");
              
  
                  //Ordenar las columnas

@@ -262,6 +262,11 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         jLabel5.setText("Sexo:");
         Panel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 274, -1, -1));
 
+        txt_curp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_curpActionPerformed(evt);
+            }
+        });
         txt_curp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_curpKeyReleased(evt);
@@ -821,6 +826,10 @@ public class Alta_alumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btn_salirActionPerformed
+
+    private void txt_curpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_curpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_curpActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

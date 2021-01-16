@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="inasistencias" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="05bc7b9b-a12b-4b6c-b5e9-d45c0a506f79">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="grado_entrada" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="periodo_entrada" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mes_entrada" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select id_grado, id_grupo, count(sexo)
+from alumno
+where id_grado = 1 and sexo = 'M' and eliminar = 'NO'
+;]]>
+	</queryString>
+	<field name="id_grado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_grupo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="count(sexo)" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="201" splitType="Stretch">
+			<staticText>
+				<reportElement x="473" y="46" width="100" height="16" uuid="dd196013-b2bb-4d9c-b9fe-ba51bc9d570f"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Fecha de impresion:]]></text>
+			</staticText>
+			<image>
+				<reportElement x="1" y="1" width="152" height="61" uuid="db85a1b7-9cb6-4741-b497-bb3ce35ab1c7"/>
+				<imageExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\resource\\sep.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="599" y="3" width="153" height="38" uuid="ffa5a9ed-d108-49bd-b708-2019b65b888e"/>
+				<imageExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\resource\\secreGRO.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="1" y="137" width="59" height="20" uuid="8b448795-7141-4053-927e-c37fa1280231"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Municipio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="117" width="59" height="20" uuid="7d86096c-e65c-452d-89b5-7131c516223a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Localidad:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="166" width="751" height="1" uuid="2d6b2d57-c0b9-4abf-8834-a971c3aa4644"/>
+			</line>
+			<line>
+				<reportElement x="1" y="76" width="751" height="1" uuid="83587c0e-593d-447e-81f4-3c657fea8f44"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="97" width="59" height="20" uuid="2edcd1e4-1161-4abf-badf-871b7c3fa016"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Domicilio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="77" width="59" height="20" uuid="c11cc1d8-b595-42b5-af34-78d23a208927"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[C.T.T. :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="137" width="61" height="20" uuid="da765b5d-8db8-468b-b605-4574b82d7da4"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Region:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="573" y="77" width="100" height="20" uuid="55a594dd-2033-478c-9a9d-34f9636c4266"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Zona:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="77" width="100" height="20" uuid="6d384ff6-f614-4de8-bee5-a77f2a4e7440"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[12PPR0395H]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="97" width="109" height="20" uuid="d4b5ed93-696d-42d5-ae06-0ed27ba0dc85"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Colonia Electricistas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="117" width="100" height="20" uuid="d55e9e0b-d1cc-4229-a937-f269d22c2511"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Acapulco de Juarez]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="136" width="100" height="20" uuid="4ebbdf16-3798-49e3-aabb-f11d4893b983"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Acapulco de Juarez]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="77" width="109" height="20" uuid="0dc126f6-2cfd-4ad9-af36-059dad1882e9"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre de la escuela:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="77" width="100" height="20" uuid="0c2ccd27-fa3d-42ed-8a4a-89a9768ca047"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Francisco Perez]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="137" width="100" height="20" uuid="6492f596-d0b4-4434-b7d6-06db3938b5c8"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ACAPULCO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="673" y="77" width="78" height="20" uuid="3ff45d85-5ad0-406c-8ce6-635c70b56259"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[048]]></text>
+			</staticText>
+			<textField pattern="EEE, d MMM yyyy HH:mm:ss Z">
+				<reportElement x="573" y="46" width="178" height="16" uuid="76495c66-2382-42ef-9802-c97334561fea"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="219" y="3" width="300" height="20" uuid="4af537c4-5ab4-4302-b689-714cabc7178f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADISTICA BASICA POR CENTRO DE TRABAJO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="673" y="98" width="78" height="20" uuid="85223e2a-a8c4-40aa-b5d6-d1fcd45ea96d"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[100]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="573" y="98" width="100" height="20" uuid="41563270-15cc-4769-8335-c47527ade383"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Turno:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="275" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="2" width="750" height="20" uuid="7ef53a48-9313-4c66-8809-6b07c63460f9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="2" width="152" height="20" uuid="590eff40-7253-4f46-9790-12069631a201"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="153" y="2" width="152" height="20" uuid="1a0d772c-010a-4dbe-a014-c7302c33d487"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="305" y="2" width="152" height="20" uuid="f4517514-63a2-4240-8fb2-15c3bf6a8fc7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="457" y="2" width="152" height="20" uuid="338d0a80-5449-4af9-81a9-e0588ab1a5cd"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="2" width="152" height="20" uuid="718787d7-b150-49fc-9aca-667874fbb545"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="2" width="152" height="20" uuid="f6a2e6a0-cfdd-49e6-a73b-fd631b4d3dae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRUPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="2" width="152" height="20" uuid="aa086d2c-37b1-476e-b848-fe15a70b92e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HOMBRES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="2" width="152" height="20" uuid="f3c71739-6f0c-4504-80c7-8cedaef2aa8d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MUJERES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="609" y="2" width="142" height="20" uuid="297aa32e-b621-4671-8acf-b375ec5d3292"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="30" width="751" height="20" uuid="801d532f-acac-4804-bdf7-a14e7fa91b5d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="63" width="750" height="20" uuid="a9ffb377-6e63-4a36-bf78-12e78d42a567"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="98" width="751" height="20" uuid="b75bc385-2746-4f31-81af-57db0c01eb98"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="136" width="751" height="20" uuid="b41c47bc-97ec-4b9f-bc4b-a43a35d465e8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="171" width="750" height="20" uuid="6b94d707-2898-45b9-a83f-08baeb43fd3d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="208" width="750" height="20" uuid="34520309-665f-455b-822a-f07d056c95be"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="30" width="152" height="20" uuid="af2d60be-a458-4fbb-9f7f-6eb15bdf1f96"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="63" width="152" height="20" uuid="20b03992-b572-4c9c-ac85-5d7d05578348"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="98" width="152" height="20" uuid="7341f605-824c-458e-986b-96597574bc59"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="136" width="152" height="20" uuid="47beff36-d406-4266-b694-000710e040ca"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="171" width="152" height="20" uuid="fc3bd8ae-5e14-4c07-89ba-a1848cb82ebe"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="208" width="152" height="20" uuid="68ea534d-474b-4441-8f5b-21948c3b3c10"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="153" y="30" width="152" height="20" uuid="f095e9f7-0e81-431c-b65b-a3547538b184"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="305" y="30" width="152" height="20" uuid="3fce74e1-afef-4f81-865f-97b02ed9f443"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="457" y="30" width="152" height="20" uuid="173e884f-8804-45f7-a817-b8c9bf69c200"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="153" y="63" width="152" height="20" uuid="82736f3d-acf4-442c-a3f2-1f7e3bd77b65"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="153" y="98" width="152" height="20" uuid="9167dbd4-552c-4e02-877a-c436b7ce9603"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="152" y="136" width="152" height="20" uuid="4ed1e675-8d72-420c-9691-fdcdc0f2ace9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="152" y="171" width="152" height="20" uuid="ecb8d2cb-e96a-4723-8cbc-75ebc3e948ab"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="304" y="208" width="152" height="20" uuid="d87b7d3d-a386-4ed9-9725-de57e452649e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="609" y="208" width="143" height="20" uuid="5ccd31b1-e57f-4d6d-9555-9c1b96d9689d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="609" y="63" width="142" height="20" uuid="c49af1e1-a8ca-4d83-867e-4da56464bf92"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="609" y="98" width="142" height="20" uuid="994a9d60-4534-465b-ac89-55637e4baba9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="609" y="136" width="142" height="20" uuid="9430dc4a-4d01-4815-b34d-97eb52d1b36b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="609" y="171" width="142" height="20" uuid="581126fc-04d8-42a9-a892-4b0d369710b7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="457" y="63" width="152" height="20" uuid="7e5eaaa2-7bc0-4aaf-b0f0-109157cfd012"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="305" y="98" width="152" height="20" uuid="1393c2ac-fb4c-4518-8b87-dfe4162d5398"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="304" y="136" width="152" height="20" uuid="14e9c9dc-7a32-4a8b-b848-890dc47e72a4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="304" y="171" width="152" height="20" uuid="3a6d26ee-5fb5-4dcc-9290-364f02ad822b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="63" width="152" height="20" uuid="d71d0cc6-f03a-4604-8e4b-81e293260438"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="30" width="152" height="20" uuid="6ca62c66-fe40-4890-a05d-a370c8948505"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="98" width="152" height="20" uuid="a537d49b-2601-438d-94f2-189dc3f8fddf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="136" width="152" height="20" uuid="3928f695-1656-48e6-a5b9-378754e1f177"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="171" width="152" height="20" uuid="699fa1d9-3014-4411-afee-aa26863bdd8f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="208" width="152" height="20" uuid="85b8ea14-3020-47fd-82a2-8c27bf4f2d34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[6]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="30" width="152" height="20" uuid="647847d9-732f-447c-b789-209583b51b03"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="208" width="152" height="20" uuid="4bcc7cd7-125d-46a3-a98b-ac6c672d64db"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="63" width="152" height="20" uuid="eb2999f9-6c3d-4552-b504-1b984df47bdc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="98" width="152" height="20" uuid="92495032-ec98-4271-91bf-9aa9790098f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="136" width="152" height="20" uuid="f0168fb3-22f2-4522-88d6-418de25fdbfd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="171" width="152" height="20" uuid="cae193ae-e872-4d8a-bbd1-42f28667cd4c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="334" y="30" width="100" height="20" uuid="7b4dd475-94cb-4426-93c8-910d4619eb15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{count(sexo)}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="334" y="63" width="100" height="20" uuid="45d12633-7a1c-4f00-83b8-bda42234d617"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\segundo_h.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="334" y="98" width="100" height="20" uuid="a6af52bb-ff0f-4374-a1c2-80a6333b9046"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\tercero_h.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="334" y="136" width="100" height="20" uuid="d0449178-339f-42fa-a55f-e3b062b336cb"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\cuarto_h.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="334" y="171" width="100" height="20" uuid="99f3a5a5-8079-404b-a4fd-dae7c3a42dd2"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\quinto_h.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="334" y="208" width="100" height="20" uuid="6952f6bb-0cf4-45a0-b9cd-3c2fa79ae983"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\sexto_h.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="488" y="63" width="100" height="20" uuid="5ba36d62-5221-4653-8ff6-fe06e11afee7"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\segundo_m.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="488" y="98" width="100" height="20" uuid="d39b78f4-b35b-4649-9408-3750d0e3434b"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\tercero_m.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="488" y="136" width="100" height="20" uuid="1f462bfd-df5f-4731-8fb5-684628f032be"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\cuarto_m.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="488" y="171" width="100" height="20" uuid="e4de48e8-1e00-467f-8e13-756af559a9b8"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\quinto_m.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="488" y="208" width="100" height="20" uuid="7a7fb2a6-786b-428a-a64d-82dbe2bf9903"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\sexto_m.jasper"]]></subreportExpression>
+			</subreport>
+			<rectangle>
+				<reportElement x="0" y="245" width="751" height="20" uuid="29a09fb4-abe8-4964-bfa9-b62199e141a7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="304" y="245" width="152" height="20" uuid="d432fbdf-e5ad-4e01-a6f7-6a885f96a1c4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="609" y="245" width="143" height="20" uuid="ab9956f2-32d8-4938-8f9f-19bd3ed7b951"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="12" y="245" width="292" height="20" uuid="c4fcb6f6-9a0a-47c0-91fa-f854e3ad5afb"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL GENERAL]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="488" y="30" width="100" height="20" uuid="a8c757ff-d99d-4a71-aeee-8eee3e8ed33a"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\primero_m.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="334" y="245" width="100" height="20" uuid="3e38aeb8-4e7c-4d2f-a2ed-d00dd73c539c"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\tg_h.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="488" y="245" width="100" height="20" uuid="79649eb8-a407-4b81-a4e0-1c1823288411"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\tg_m.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="633" y="30" width="100" height="20" uuid="eefde9ac-2b75-4453-8a70-e923575ae656"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\total_1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="633" y="63" width="100" height="20" uuid="831956b0-874a-4d91-a7d9-3c0f0d04cf53"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\total_1_1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="633" y="98" width="100" height="20" uuid="0ccda9cd-0f16-4261-b38f-167bf34e7b83"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\total_1_2.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="633" y="136" width="100" height="20" uuid="9724cc9b-10fe-4617-beb5-d0e6619650b8"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\total_1_3.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="633" y="171" width="100" height="20" uuid="ef5985d2-68a9-4bbf-a625-37b66893cb22"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\total_1_4.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="633" y="208" width="100" height="20" uuid="7c53d6e7-0b69-4261-aeca-8cefe9b2c03d"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\total_1_5.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="633" y="245" width="100" height="20" uuid="57251e62-6104-44f9-b34b-2296811c4efb"/>
+				<subreportParameter name="curp_entrada"/>
+				<subreportParameter name="grado_entrada"/>
+				<subreportParameter name="periodo_entrada"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Estadisticas_nxs\\total_1_6.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="152" y="0" width="129" height="20" uuid="429b3b38-5893-4546-b59f-ce0cec7a29fb"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[SUPERVISOR (A)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="509" y="0" width="100" height="20" uuid="c2cb0b62-153a-499f-a410-6dffbcf701f3"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[DIRECTOR (A)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="32" width="153" height="20" uuid="118e30d3-e427-4338-828b-11eeda6a4aa2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carolina Astudillo Hernandez]]></text>
+			</staticText>
+			<line>
+				<reportElement x="475" y="31" width="158" height="1" uuid="aaa216b7-7eb2-4157-92d3-86307b4dfd1d"/>
+			</line>
+			<line>
+				<reportElement x="152" y="32" width="131" height="1" uuid="28d54618-69dc-422a-8dca-3cb31f10102e"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

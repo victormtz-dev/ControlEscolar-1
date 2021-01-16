@@ -8,13 +8,11 @@
 	</parameter>
 	<queryString>
 		<![CDATA[select a.apellido_paterno, a.apellido_materno, a.nombre, c.calif1, 
-c.calif2, c.calif3, c.calif4, c.calif5, c.calif6, c.calif7, c.calif8, c.calif9,
-round(((c.calif1+c.calif2+c.calif3+c.calif4+c.calif5+c.calif6+c.calif7+c.calif8+c.calif8)/9),1) as promedio
-
+c.calif2, c.calif3, c.calif4, c.calif5, c.calif6,
+round(((c.calif1+c.calif2+c.calif3+c.calif4+c.calif5+c.calif6)/6),1) as promedio
 from calificaciones1 as c, alumno as a
-
 where c.curp = a.curp and c.curp = $P!{curp_entrada} and c.id_mes='9'
-;]]>
+]]>
 	</queryString>
 	<field name="apellido_paterno" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -43,15 +41,6 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada} and c.id_mes='9'
 	<field name="calif6" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="calif7" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="calif8" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="calif9" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<field name="promedio" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -66,7 +55,7 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada} and c.id_mes='9'
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="200" splitType="Stretch">
+		<band height="141" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="31" height="20" uuid="086b113d-4867-4c02-afb4-7d60995326a3"/>
 				<textFieldExpression><![CDATA[$F{calif1}]]></textFieldExpression>
@@ -92,19 +81,7 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada} and c.id_mes='9'
 				<textFieldExpression><![CDATA[$F{calif6}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="120" width="31" height="20" uuid="7c25cbc6-3227-47d6-a080-62738049df88"/>
-				<textFieldExpression><![CDATA[$F{calif7}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="140" width="31" height="20" uuid="0b80c77e-d62f-40b5-838f-93f9d593a229"/>
-				<textFieldExpression><![CDATA[$F{calif8}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="160" width="31" height="20" uuid="726c91ad-8e97-4e6a-b408-174935bbda53"/>
-				<textFieldExpression><![CDATA[$F{calif9}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="180" width="31" height="20" uuid="a973ade8-5a2f-4bb2-a06e-8f2015e1375e"/>
+				<reportElement x="0" y="120" width="31" height="20" uuid="a973ade8-5a2f-4bb2-a06e-8f2015e1375e"/>
 				<textFieldExpression><![CDATA[$F{promedio}]]></textFieldExpression>
 			</textField>
 		</band>

@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.util.Objects;
 import javax.swing.*;
 
+
 public class LoginUI extends JFrame {
 
     //Variables globales
@@ -153,7 +154,8 @@ public class LoginUI extends JFrame {
     private void addLogo(JPanel panel1) {
         JLabel label1 = new JLabel();
         label1.setFocusable(false);
-        label1.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("Escudo_FP.png")).getFile()));
+        label1.setIcon(new ImageIcon(getClass().getResource("/img/Escudo_FP.png")));
+       // label1.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("/img/Escudo_FP.png")).getFile()));
         panel1.add(label1);
         label1.setBounds(100, 100, 200, 200);
     }

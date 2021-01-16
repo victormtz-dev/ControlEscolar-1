@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cal1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44998078-032e-44b0-8773-7fbe5bab89ba">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="44"/>
 	<subDataset name="dataset1" uuid="d07403b5-50b7-439a-a62a-3f1d97195e00"/>
 	<parameter name="curp_entrada" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -12,10 +12,10 @@
 	</parameter>
 	<queryString>
 		<![CDATA[select a.apellido_paterno, a.apellido_materno, a.nombre, c.calif1, 
-c.calif2, c.calif3, c.calif4, c.calif5, c.calif6, c.calif7, c.calif8, c.calif9,
-round(((c.calif1+c.calif2+c.calif3+c.calif4+c.calif5+c.calif6+c.calif7+c.calif8+c.calif8)/9),1) as promedio
+c.calif2, c.calif3, c.calif4, c.calif5, c.calif6,
+round(((c.calif1+c.calif2+c.calif3+c.calif4+c.calif5+c.calif6)/6),1) as promedio
 from calificaciones1 as c, alumno as a
-where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
+where c.curp = a.curp and c.curp = $P!{curp_entrada} and c.id_mes='7']]>
 	</queryString>
 	<field name="apellido_paterno" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -44,15 +44,6 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 	<field name="calif6" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="calif7" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="calif8" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="calif9" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<field name="promedio" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -76,13 +67,17 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="156" y="58" width="110" height="20" uuid="f46798ad-32a2-433f-85b3-3f1e6e2b6ba3"/>
+				<reportElement x="217" y="58" width="105" height="20" uuid="f46798ad-32a2-433f-85b3-3f1e6e2b6ba3"/>
 				<text><![CDATA[GRADO Y GRUPO: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="347" y="58" width="121" height="20" uuid="3db4d66e-969e-4667-a52f-809c14204d3c"/>
+				<reportElement x="322" y="58" width="121" height="20" uuid="3db4d66e-969e-4667-a52f-809c14204d3c"/>
 				<text><![CDATA[PRIMERO A]]></text>
 			</staticText>
+			<image>
+				<reportElement x="1" y="0" width="90" height="78" uuid="5789799f-7b78-4a5a-8c76-dd705b365bf1"/>
+				<imageExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\resource\\Escudo_FP.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -161,27 +156,21 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<text><![CDATA[Promedio  Final]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="21" y="58" width="96" height="20" uuid="248033b7-39d7-47a1-84b9-be5b6e897a5f"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Formacion civica y etica]]></text>
+				<reportElement x="73" y="7" width="100" height="20" uuid="dbb80151-4bf5-4d1c-9dbe-dd0bede91fe3"/>
+				<text><![CDATA[Alumno (a):]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="689" y="129" width="96" height="20" uuid="0c0f00a3-f0fa-4c26-ab25-4d37e8abbe7a"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Vida saludable]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="1" y="0" width="96" height="115" uuid="95e702c3-1133-45b6-821c-4be595e8520e"/>
-				<text><![CDATA[]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="10" y="10" width="100" height="20" uuid="c4e59b33-e464-418b-a2be-dc081c1861bd"/>
-				<text><![CDATA[Static text]]></text>
-			</staticText>
+			<textField>
+				<reportElement x="174" y="7" width="100" height="20" uuid="1390404e-ac5c-438e-a3af-d3f63cef620e"/>
+				<textFieldExpression><![CDATA[$F{apellido_paterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="295" y="7" width="113" height="20" uuid="f0a86840-d0a6-4e79-9c85-c7a2cbc315e0"/>
+				<textFieldExpression><![CDATA[$F{apellido_materno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="7" width="145" height="20" uuid="31a3412f-2c28-4aa9-9df7-6b6e6147e74e"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
@@ -191,27 +180,15 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<textFieldExpression><![CDATA[$F{calif4}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="97" y="140" width="26" height="20" uuid="a2c0d5bc-01fd-4490-9321-83ae038e1ef3"/>
-				<textFieldExpression><![CDATA[$F{calif8}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="97" y="20" width="26" height="20" uuid="e9c4df37-ccef-4047-be80-22bea498361d"/>
 				<textFieldExpression><![CDATA[$F{calif2}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="97" y="160" width="26" height="20" uuid="580e3e29-e925-4b59-9667-4db994dca92a"/>
-				<textFieldExpression><![CDATA[$F{calif9}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="97" y="120" width="26" height="20" uuid="766fe352-2365-4e33-a5bc-fde8ec19d618"/>
-				<textFieldExpression><![CDATA[$F{calif7}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="97" y="80" width="26" height="20" uuid="304f1464-3b0b-4163-9625-f7cffd7d672e"/>
 				<textFieldExpression><![CDATA[$F{calif5}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="97" y="0" width="26" height="20" uuid="75ee7160-58d0-40c8-93aa-7179362088b9"/>
+				<reportElement x="96" y="0" width="26" height="20" uuid="75ee7160-58d0-40c8-93aa-7179362088b9"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
@@ -226,11 +203,11 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<textFieldExpression><![CDATA[$F{calif3}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="80" width="96" height="20" uuid="17e99d44-3322-44bf-8437-e16bccaf498e"/>
+				<reportElement x="0" y="60" width="96" height="20" uuid="17e99d44-3322-44bf-8437-e16bccaf498e"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Matematicas]]></text>
+				<text><![CDATA[Formacion civa y etica]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="100" width="96" height="20" uuid="2713732e-5cf3-4fe7-bdd3-c0c4d05ad298"/>
@@ -244,52 +221,31 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[E. Socioemocional]]></text>
+				<text><![CDATA[Español]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="40" width="96" height="20" uuid="f93bc1e3-3133-488e-8e95-5ea162d5b888"/>
 				<textElement>
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
-				<text><![CDATA[Conocimiento del medio]]></text>
+				<text><![CDATA[Explo. de la naturaleza y soc.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="60" width="96" height="20" uuid="36ad38b9-9a54-4c99-a858-e4811f6be9d7"/>
+				<reportElement x="0" y="80" width="96" height="20" uuid="36ad38b9-9a54-4c99-a858-e4811f6be9d7"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Lengua Materna]]></text>
+				<text><![CDATA[Educacion artistica]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="20" width="96" height="20" uuid="795512b2-05d7-4c4a-8867-184ad007f4f5"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Artes]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="120" width="96" height="20" uuid="f076b2d8-a732-4f61-af0b-0397d7d8cddc"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Formacion civica y etica]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="140" width="96" height="20" uuid="6ca71267-4536-4b90-9adc-dc7b97305026"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Vida saludable]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="160" width="96" height="20" uuid="0f56c837-a971-47ae-81e1-8cf2a81d49aa"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Ingles]]></text>
+				<text><![CDATA[Matematicas]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="131" y="1" width="25" height="198" uuid="4bad800c-3a82-43f1-bdbc-e552cf127ca7"/>
+				<reportElement x="131" y="1" width="25" height="140" uuid="4bad800c-3a82-43f1-bdbc-e552cf127ca7"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -297,7 +253,7 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\cal1_subreport4_1.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="166" y="0" width="20" height="199" uuid="7b53ba20-b3a2-4319-85b1-e1d9230f147e"/>
+				<reportElement x="166" y="0" width="20" height="141" uuid="7b53ba20-b3a2-4319-85b1-e1d9230f147e"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -305,14 +261,14 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\cal1_subreport4_1_1.jasper"]]></subreportExpression>
 			</subreport>
 			<line>
-				<reportElement x="1" y="180" width="407" height="1" uuid="b07eb43a-5904-400e-93a9-7fd2955b1116"/>
+				<reportElement x="0" y="120" width="407" height="1" uuid="b07eb43a-5904-400e-93a9-7fd2955b1116"/>
 			</line>
 			<staticText>
-				<reportElement x="1" y="179" width="96" height="20" uuid="d01580cd-ac37-4497-9ba5-dd2916ce5805"/>
+				<reportElement x="0" y="121" width="96" height="20" uuid="d01580cd-ac37-4497-9ba5-dd2916ce5805"/>
 				<text><![CDATA[Promedio Mensual]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="197" y="1" width="20" height="198" uuid="508221d3-dabe-4a3d-9e75-f6a66d8f7977"/>
+				<reportElement x="197" y="1" width="20" height="140" uuid="508221d3-dabe-4a3d-9e75-f6a66d8f7977"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -320,7 +276,7 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\cal1_subreport4_1_1_1.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="227" y="1" width="20" height="198" uuid="33458481-d579-45a3-8e73-fe3502d61b58"/>
+				<reportElement x="227" y="1" width="20" height="140" uuid="33458481-d579-45a3-8e73-fe3502d61b58"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -328,7 +284,7 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\cal1_subreport4_1_1_2.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="257" y="1" width="20" height="198" uuid="7a899361-6544-40b3-94dd-d7df9fc2f0a1"/>
+				<reportElement x="257" y="1" width="20" height="140" uuid="7a899361-6544-40b3-94dd-d7df9fc2f0a1"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -336,15 +292,7 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\cal1_subreport4_1_1_3.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="290" y="1" width="20" height="198" uuid="4fea16ef-967e-4692-9515-bc9a1b7dc683"/>
-				<subreportParameter name="curp_entrada">
-					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\cal1_subreport4_1_1_4.jasper"]]></subreportExpression>
-			</subreport>
-			<subreport>
-				<reportElement x="324" y="1" width="20" height="198" uuid="059d5251-6dd2-431a-9a5e-9b31651a2ae2"/>
+				<reportElement x="324" y="1" width="20" height="140" uuid="059d5251-6dd2-431a-9a5e-9b31651a2ae2"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -352,7 +300,7 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\cal1_subreport4_1_1_5.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="356" y="1" width="20" height="198" uuid="1b8cb753-2257-4cf4-b771-b0f4e9df4ae9"/>
+				<reportElement x="356" y="1" width="20" height="140" uuid="1b8cb753-2257-4cf4-b771-b0f4e9df4ae9"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -360,7 +308,7 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\cal1_subreport4_1_1_6.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="388" y="1" width="20" height="198" uuid="2ef5a4ed-b083-47b5-a567-b504a46e0089"/>
+				<reportElement x="388" y="1" width="20" height="140" uuid="2ef5a4ed-b083-47b5-a567-b504a46e0089"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -368,11 +316,11 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\cal1_subreport4_1_1_7.jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement x="97" y="180" width="25" height="19" uuid="a50a9567-0e35-432f-bcd9-355fe6e8473d"/>
+				<reportElement x="97" y="122" width="25" height="19" uuid="a50a9567-0e35-432f-bcd9-355fe6e8473d"/>
 				<textFieldExpression><![CDATA[$F{promedio}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="468" y="1" width="25" height="179" uuid="a78ff677-ac9a-4f25-9213-29b2d831a220"/>
+				<reportElement x="468" y="1" width="25" height="140" uuid="a78ff677-ac9a-4f25-9213-29b2d831a220"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -380,7 +328,7 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\pm1_1.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="494" y="1" width="26" height="179" uuid="8466397f-818f-4e88-8008-181fdfd3357f"/>
+				<reportElement x="494" y="1" width="26" height="140" uuid="8466397f-818f-4e88-8008-181fdfd3357f"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -388,7 +336,7 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\pm1_1_1.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="521" y="1" width="25" height="179" uuid="48de45c3-4267-4a8d-96fe-b4127a7d00f9"/>
+				<reportElement x="521" y="1" width="25" height="140" uuid="48de45c3-4267-4a8d-96fe-b4127a7d00f9"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -396,7 +344,7 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\pm1_1_2.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="547" y="1" width="25" height="179" uuid="edb6759c-1f69-4288-995e-8596f105a126"/>
+				<reportElement x="547" y="1" width="25" height="140" uuid="edb6759c-1f69-4288-995e-8596f105a126"/>
 				<subreportParameter name="curp_entrada">
 					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -404,87 +352,87 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\pm1_1_3.jasper"]]></subreportExpression>
 			</subreport>
 			<rectangle>
-				<reportElement x="0" y="223" width="571" height="58" uuid="e5a06051-9543-48b1-96c6-73aeae5f6d88"/>
+				<reportElement x="1" y="194" width="571" height="58" uuid="e5a06051-9543-48b1-96c6-73aeae5f6d88"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="0" y="223" width="145" height="18" uuid="56aee1c8-6837-4426-bafe-b2d72f7715e3"/>
+				<reportElement x="1" y="194" width="145" height="18" uuid="56aee1c8-6837-4426-bafe-b2d72f7715e3"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="241" width="144" height="10" uuid="dc3f3146-0451-4e9c-973a-c34dc4241251"/>
+				<reportElement x="2" y="212" width="144" height="10" uuid="dc3f3146-0451-4e9c-973a-c34dc4241251"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="261" width="144" height="10" uuid="af81f530-cfdb-41c2-ba1f-36c2b6cb1f9b"/>
+				<reportElement x="2" y="232" width="144" height="10" uuid="af81f530-cfdb-41c2-ba1f-36c2b6cb1f9b"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="271" width="144" height="10" uuid="14625326-95eb-45b9-b995-20ee78ff0c25"/>
+				<reportElement x="2" y="242" width="144" height="10" uuid="14625326-95eb-45b9-b995-20ee78ff0c25"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="145" y="241" width="426" height="10" uuid="5367e9ab-c48a-42bd-865f-2c17dfddeafe"/>
+				<reportElement x="146" y="212" width="426" height="10" uuid="5367e9ab-c48a-42bd-865f-2c17dfddeafe"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="146" y="251" width="424" height="10" uuid="051a7bb3-0850-4b8f-9065-0057fcccbf28"/>
+				<reportElement x="147" y="222" width="424" height="10" uuid="051a7bb3-0850-4b8f-9065-0057fcccbf28"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="145" y="271" width="426" height="10" uuid="86753985-d51a-44f4-bdfd-b0569e4204d0"/>
+				<reportElement x="146" y="242" width="426" height="10" uuid="86753985-d51a-44f4-bdfd-b0569e4204d0"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="1" y="223" width="144" height="18" uuid="e2ff5734-9e69-4dd9-93d3-54f1eaa09b78"/>
+				<reportElement x="2" y="194" width="144" height="18" uuid="e2ff5734-9e69-4dd9-93d3-54f1eaa09b78"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[NIVELES DE DESEMPEÑO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="241" width="145" height="10" uuid="7da2a113-fa9a-4fdd-8412-e67087053d50"/>
+				<reportElement x="1" y="212" width="145" height="10" uuid="7da2a113-fa9a-4fdd-8412-e67087053d50"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<text><![CDATA[NIVEL I = EQUIVALE A 5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="251" width="144" height="10" uuid="3e0b459d-b98b-4f6c-b010-78953bac7dce"/>
+				<reportElement x="2" y="222" width="144" height="10" uuid="3e0b459d-b98b-4f6c-b010-78953bac7dce"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<text><![CDATA[NIVEL II = EQUIVALE A 6 Y 7]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="261" width="144" height="10" uuid="2eddb089-08e5-4e32-b384-9e3519fda67c"/>
+				<reportElement x="1" y="232" width="144" height="10" uuid="2eddb089-08e5-4e32-b384-9e3519fda67c"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<text><![CDATA[NIVEL III = EQUIVALE A 8 Y 9]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="271" width="144" height="10" uuid="04e29228-a468-4683-a044-ae68287bf55d"/>
+				<reportElement x="2" y="242" width="144" height="10" uuid="04e29228-a468-4683-a044-ae68287bf55d"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<text><![CDATA[NIVEL IV = EQUIVALE A 10]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="145" y="241" width="426" height="20" uuid="98363cd6-b9bc-40c5-a31e-b653bd255895"/>
+				<reportElement x="146" y="212" width="426" height="20" uuid="98363cd6-b9bc-40c5-a31e-b653bd255895"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<text><![CDATA[El estudiante tiene carencias fundamentales en valores y principios para desarrollar una convivencia sana y pacifica, dentro y fuera del aula.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="148" y="251" width="425" height="10" uuid="51e51ca6-0329-4c92-bc4c-f96b2855ec88"/>
+				<reportElement x="149" y="222" width="425" height="10" uuid="51e51ca6-0329-4c92-bc4c-f96b2855ec88"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<text><![CDATA[El estudiante tiene dificultades para demostrar valores y principios para desarrollar una convivencia sana y pacifica, dentro y fuera del aula.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="261" width="424" height="10" uuid="6ba42b9e-e525-4f1c-b6ae-940e69933549"/>
+				<reportElement x="147" y="232" width="424" height="10" uuid="6ba42b9e-e525-4f1c-b6ae-940e69933549"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<text><![CDATA[El estudiante ha demostrado los valores y principios para desarrollar una convivencia sana y pacifica, dentro y fuera del aula.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="271" width="424" height="10" uuid="e0915639-9506-4100-86da-79855feed1c5"/>
+				<reportElement x="147" y="242" width="424" height="10" uuid="e0915639-9506-4100-86da-79855feed1c5"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
@@ -498,38 +446,38 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 			</rectangle>
 			<staticText>
 				<reportElement x="66" y="302" width="65" height="12" uuid="5447a39d-cff9-43b6-a5bf-f7281a5337e0"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[Static text]]></text>
+				<text><![CDATA[Agosto]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="66" y="314" width="65" height="12" uuid="d1d1f079-b4f0-4918-beec-7cfa81cfc47c"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[Static text]]></text>
+				<text><![CDATA[Septiembre]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="66" y="326" width="65" height="12" uuid="ce0d3d56-6bb8-433d-a8f8-c18bc08ce7fa"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[Static text]]></text>
+				<text><![CDATA[Octubre]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="66" y="338" width="65" height="12" uuid="f6543c6e-d811-4f87-90f1-fddea8f3e22e"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[Static text]]></text>
+				<text><![CDATA[Nov/Dic]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="66" y="350" width="65" height="12" uuid="b98df073-9edf-49a7-8d13-d79d99ba383c"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[Static text]]></text>
+				<text><![CDATA[Enero]]></text>
 			</staticText>
 			<line>
 				<reportElement x="180" y="314" width="32" height="1" uuid="e0d02e06-4296-45df-9819-b73cd195bab6"/>
@@ -561,41 +509,41 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 			</line>
 			<staticText>
 				<reportElement x="322" y="301" width="65" height="12" uuid="f7448e8c-90d7-4cd2-9502-48d041f18607"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[Static text]]></text>
+				<text><![CDATA[Febrero]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="322" y="337" width="65" height="12" uuid="f3432347-59f6-48b3-850c-2332c4fa4614"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[Static text]]></text>
+				<text><![CDATA[Mayo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="322" y="349" width="65" height="12" uuid="8ebd66f4-71f3-48bc-bdd4-ba6d0247cfb8"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[Static text]]></text>
+				<text><![CDATA[Junio]]></text>
 			</staticText>
 			<line>
 				<reportElement x="436" y="337" width="32" height="1" uuid="f31d5097-8937-4171-9569-91aaffa76883"/>
 			</line>
 			<staticText>
 				<reportElement x="322" y="313" width="65" height="12" uuid="c1639452-58b7-43b7-8e4f-ba3196b04b7d"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[Static text]]></text>
+				<text><![CDATA[Marzo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="322" y="325" width="65" height="12" uuid="3e30bf6a-9401-4497-85f6-f5851b7bdc89"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[Static text]]></text>
+				<text><![CDATA[Abril]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="436" y="293" width="32" height="12" uuid="4bacb544-eee5-4620-818b-8fb142c3dc11"/>
@@ -610,6 +558,14 @@ where c.curp = a.curp and c.curp = $P!{curp_entrada}]]>
 			<line>
 				<reportElement x="436" y="360" width="32" height="1" uuid="a2b162ef-2e6e-451b-9c7a-8d29a8e16bd4"/>
 			</line>
+			<subreport>
+				<reportElement x="290" y="1" width="20" height="140" uuid="4fea16ef-967e-4692-9515-bc9a1b7dc683"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\sub-reporter\\cal1_subreport4_1_1_4.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<columnFooter>

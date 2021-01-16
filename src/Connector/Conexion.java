@@ -39,6 +39,18 @@ public class Conexion {
         }
         return (Conexion) con;
     }
+    
+    public String getUsuario(){
+        return USER;
+    }
+    
+    public String getPass(){
+        return PASSWORD;
+    }
+    
+    public String getBD(){
+        return DBNAME;
+    }
 }
 
 

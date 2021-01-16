@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cal1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44998078-032e-44b0-8773-7fbe5bab89ba">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="d07403b5-50b7-439a-a62a-3f1d97195e00"/>
+	<parameter name="curp_entrada" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.apellido_paterno, a.apellido_materno, a.nombre, c.calif1, 
+c.calif2, c.calif3, c.calif4, c.calif5, c.calif6, c.calif7,c.calif8,
+round(((c.calif1+c.calif2+c.calif3+c.calif4+c.calif5+c.calif6+c.calif7+c.calif8)/8),1) as promedio
+from calificaciones4 as c, alumno as a
+where c.curp = a.curp and c.curp = $P!{curp_entrada} and c.id_mes='7']]>
+	</queryString>
+	<field name="apellido_paterno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellido_materno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif1" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif2" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif3" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif4" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif5" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif6" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif7" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif8" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="promedio" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement x="207" y="0" width="240" height="20" uuid="dcb90f43-9aa4-4dff-8908-cdccf58d5c32"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESCUELA PRIMARIA FRANCISO PEREZ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="156" y="33" width="122" height="20" uuid="b30f7c01-f4b5-4a01-9b42-dd015ec6c95b"/>
+				<text><![CDATA[SECCION: PRIMARIA ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="347" y="33" width="121" height="20" uuid="3690eb6c-3b80-4ffa-96ee-72386de6443b"/>
+				<text><![CDATA[CLAVE: 12PPR0395H
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="58" width="105" height="20" uuid="f46798ad-32a2-433f-85b3-3f1e6e2b6ba3"/>
+				<text><![CDATA[GRADO Y GRUPO: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="58" width="121" height="20" uuid="3db4d66e-969e-4667-a52f-809c14204d3c"/>
+				<text><![CDATA[CUARTO A]]></text>
+			</staticText>
+			<image>
+				<reportElement x="1" y="0" width="90" height="78" uuid="5789799f-7b78-4a5a-8c76-dd705b365bf1"/>
+				<imageExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\resource\\Escudo_FP.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="115" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="97" y="31" width="25" height="84" backcolor="#00CCCC" uuid="e4b90a1a-ee67-42a8-9638-3b8b061c4e86"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Diagnostico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="131" y="31" width="25" height="84" backcolor="#FF9999" uuid="9fbc3798-93f6-4df8-a836-b6bf46170b92"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Septiembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="166" y="31" width="20" height="84" backcolor="#FF9999" uuid="4e780383-2960-41b2-a0c6-506d418abef5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Octubre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="197" y="31" width="20" height="84" backcolor="#FF9999" uuid="56b66151-ae60-4ccf-8c06-3c8fa51b7098"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Nov / Dic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="227" y="31" width="20" height="84" backcolor="#FFFF66" uuid="736814e9-c7ef-4f33-8d09-b5fa2b855642"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Enero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="257" y="31" width="20" height="84" backcolor="#FFFF66" uuid="f7a36635-5a74-42ef-ab09-d442bfa93803"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Febrero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="290" y="31" width="20" height="84" backcolor="#FFFF66" uuid="434b0f11-120e-4502-a99d-637d14313400"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Marzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="324" y="31" width="20" height="84" backcolor="#99FF99" uuid="49e6a45b-2f1e-43ed-9201-bd0b3d74619b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Abril]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="356" y="31" width="20" height="84" backcolor="#99FF99" uuid="f480c50d-7087-4fc5-9f76-6ab85727954b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Mayo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="388" y="31" width="20" height="84" backcolor="#99FF99" uuid="25468d6e-e42b-46bf-8c27-a766d329103f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Junio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="468" y="31" width="25" height="84" backcolor="#FF9999" uuid="55c31132-2fcb-42bc-bbdb-2563fb22d5a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Calif. Trim 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="494" y="31" width="25" height="84" backcolor="#FFFF66" uuid="2184598b-edff-4610-8ee9-5e4053f656d6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Calif. Trim 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="520" y="31" width="25" height="84" backcolor="#99FF99" uuid="d0c75cfd-e5b7-4a03-b641-db4dd9986791"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Calif. Trim 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="546" y="31" width="25" height="84" backcolor="#00CCCC" uuid="3443d846-3ed5-4f21-98f5-19520fa3a156"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left"/>
+				<text><![CDATA[Promedio  Final]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="7" width="100" height="20" uuid="dbb80151-4bf5-4d1c-9dbe-dd0bede91fe3"/>
+				<text><![CDATA[Alumno (a):]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="174" y="7" width="100" height="20" uuid="1390404e-ac5c-438e-a3af-d3f63cef620e"/>
+				<textFieldExpression><![CDATA[$F{apellido_paterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="295" y="7" width="113" height="20" uuid="f0a86840-d0a6-4e79-9c85-c7a2cbc315e0"/>
+				<textFieldExpression><![CDATA[$F{apellido_materno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="7" width="145" height="20" uuid="31a3412f-2c28-4aa9-9df7-6b6e6147e74e"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="367" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="80" width="96" height="20" uuid="17e99d44-3322-44bf-8437-e16bccaf498e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Historia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="100" width="96" height="20" uuid="2713732e-5cf3-4fe7-bdd3-c0c4d05ad298"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Formacion civica y etica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="96" height="20" uuid="327e912a-d4f2-4eb4-a171-b6014fad9535"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Español]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="96" height="20" uuid="f93bc1e3-3133-488e-8e95-5ea162d5b888"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Ciencias naturales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="96" height="20" uuid="36ad38b9-9a54-4c99-a858-e4811f6be9d7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Geografia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="96" height="20" uuid="795512b2-05d7-4c4a-8867-184ad007f4f5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Matematicas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="120" width="96" height="20" uuid="f076b2d8-a732-4f61-af0b-0397d7d8cddc"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Educacion artistica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="140" width="96" height="20" uuid="6ca71267-4536-4b90-9adc-dc7b97305026"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Educacion fisica]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="160" width="407" height="1" uuid="b07eb43a-5904-400e-93a9-7fd2955b1116"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="161" width="96" height="20" uuid="d01580cd-ac37-4497-9ba5-dd2916ce5805"/>
+				<text><![CDATA[Promedio Mensual]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="216" width="571" height="58" uuid="e5a06051-9543-48b1-96c6-73aeae5f6d88"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="216" width="145" height="18" uuid="56aee1c8-6837-4426-bafe-b2d72f7715e3"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="2" y="234" width="144" height="10" uuid="dc3f3146-0451-4e9c-973a-c34dc4241251"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="2" y="254" width="144" height="10" uuid="af81f530-cfdb-41c2-ba1f-36c2b6cb1f9b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="2" y="264" width="144" height="10" uuid="14625326-95eb-45b9-b995-20ee78ff0c25"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="146" y="234" width="426" height="10" uuid="5367e9ab-c48a-42bd-865f-2c17dfddeafe"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="147" y="244" width="424" height="10" uuid="051a7bb3-0850-4b8f-9065-0057fcccbf28"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="146" y="264" width="426" height="10" uuid="86753985-d51a-44f4-bdfd-b0569e4204d0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="216" width="144" height="18" uuid="e2ff5734-9e69-4dd9-93d3-54f1eaa09b78"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NIVELES DE DESEMPEÑO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="234" width="145" height="10" uuid="7da2a113-fa9a-4fdd-8412-e67087053d50"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[NIVEL I = EQUIVALE A 5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="244" width="144" height="10" uuid="3e0b459d-b98b-4f6c-b010-78953bac7dce"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[NIVEL II = EQUIVALE A 6 Y 7]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="254" width="144" height="10" uuid="2eddb089-08e5-4e32-b384-9e3519fda67c"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[NIVEL III = EQUIVALE A 8 Y 9]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="264" width="144" height="10" uuid="04e29228-a468-4683-a044-ae68287bf55d"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[NIVEL IV = EQUIVALE A 10]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="146" y="234" width="426" height="20" uuid="98363cd6-b9bc-40c5-a31e-b653bd255895"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[El estudiante tiene carencias fundamentales en valores y principios para desarrollar una convivencia sana y pacifica, dentro y fuera del aula.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="244" width="425" height="10" uuid="51e51ca6-0329-4c92-bc4c-f96b2855ec88"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[El estudiante tiene dificultades para demostrar valores y principios para desarrollar una convivencia sana y pacifica, dentro y fuera del aula.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="254" width="424" height="10" uuid="6ba42b9e-e525-4f1c-b6ae-940e69933549"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[El estudiante ha demostrado los valores y principios para desarrollar una convivencia sana y pacifica, dentro y fuera del aula.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="264" width="424" height="10" uuid="e0915639-9506-4100-86da-79855feed1c5"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[El estudiante ha demostrado los valores y principios para desarrollar una convivencia sana y pacifica, dentro y fuera del aula.]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="61" y="292" width="151" height="74" uuid="9d467e93-bd70-4c08-bbad-b5b84330a8b1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="310" y="292" width="158" height="74" uuid="f91b15a6-4dbd-4250-9a2b-e602cfaec28b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="66" y="302" width="65" height="12" uuid="5447a39d-cff9-43b6-a5bf-f7281a5337e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Agosto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="314" width="65" height="12" uuid="d1d1f079-b4f0-4918-beec-7cfa81cfc47c"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Septiembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="326" width="65" height="12" uuid="ce0d3d56-6bb8-433d-a8f8-c18bc08ce7fa"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Octubre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="338" width="65" height="12" uuid="f6543c6e-d811-4f87-90f1-fddea8f3e22e"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Nov/Dic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="350" width="65" height="12" uuid="b98df073-9edf-49a7-8d13-d79d99ba383c"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Enero]]></text>
+			</staticText>
+			<line>
+				<reportElement x="180" y="314" width="32" height="1" uuid="e0d02e06-4296-45df-9819-b73cd195bab6"/>
+			</line>
+			<line>
+				<reportElement x="180" y="325" width="32" height="1" uuid="ce21f6b6-7698-4712-a4de-948262d1dd19"/>
+			</line>
+			<line>
+				<reportElement x="180" y="338" width="32" height="1" uuid="4fc4a943-fc37-438a-bffd-93826b0292b0"/>
+			</line>
+			<line>
+				<reportElement x="180" y="350" width="32" height="1" uuid="10b96cbc-c7ca-4f70-9e1c-1c60cb04273f"/>
+			</line>
+			<line>
+				<reportElement x="180" y="361" width="32" height="1" uuid="509ddae8-847b-4ad5-ba4a-b9eb16d071a7"/>
+			</line>
+			<staticText>
+				<reportElement x="180" y="292" width="32" height="12" uuid="c53e5c93-90ab-4749-8521-3c7e83f5cbd6"/>
+				<textElement>
+					<font size="4"/>
+				</textElement>
+				<text><![CDATA[Firma del tutor]]></text>
+			</staticText>
+			<line>
+				<reportElement x="436" y="349" width="32" height="1" uuid="493dcc5b-a120-461b-a6ed-1b4614d5c6c6"/>
+			</line>
+			<line>
+				<reportElement x="436" y="324" width="32" height="1" uuid="c32c473c-c3c3-4b88-b466-9cf26fa2209d"/>
+			</line>
+			<staticText>
+				<reportElement x="322" y="301" width="65" height="12" uuid="f7448e8c-90d7-4cd2-9502-48d041f18607"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Febrero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="337" width="65" height="12" uuid="f3432347-59f6-48b3-850c-2332c4fa4614"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Mayo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="349" width="65" height="12" uuid="8ebd66f4-71f3-48bc-bdd4-ba6d0247cfb8"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Junio]]></text>
+			</staticText>
+			<line>
+				<reportElement x="436" y="337" width="32" height="1" uuid="f31d5097-8937-4171-9569-91aaffa76883"/>
+			</line>
+			<staticText>
+				<reportElement x="322" y="313" width="65" height="12" uuid="c1639452-58b7-43b7-8e4f-ba3196b04b7d"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Marzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="325" width="65" height="12" uuid="3e30bf6a-9401-4497-85f6-f5851b7bdc89"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Abril]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="436" y="293" width="32" height="12" uuid="4bacb544-eee5-4620-818b-8fb142c3dc11"/>
+				<textElement>
+					<font size="4"/>
+				</textElement>
+				<text><![CDATA[Firma del tutor]]></text>
+			</staticText>
+			<line>
+				<reportElement x="436" y="312" width="32" height="1" uuid="ef5a4cda-273a-495e-9075-e5156018f453"/>
+			</line>
+			<line>
+				<reportElement x="436" y="360" width="32" height="1" uuid="a2b162ef-2e6e-451b-9c7a-8d29a8e16bd4"/>
+			</line>
+			<subreport>
+				<reportElement x="131" y="0" width="25" height="181" uuid="5f510983-2d03-490a-93eb-7027e3aabd2f"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\cal1_subreport4_1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="166" y="0" width="20" height="181" uuid="b7903f39-1f57-457e-9e24-afc44a50cced"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\cal1_subreport4_1_1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="196" y="0" width="20" height="181" uuid="b7d83921-52ba-449d-a63a-f0c763259924"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\cal1_subreport4_1_1_1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="227" y="1" width="20" height="181" uuid="4ee742f2-e671-4f5a-958b-4464978e0173"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\cal1_subreport4_1_1_2.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="257" y="0" width="21" height="181" uuid="f3ef38d8-5644-4ac1-858d-27e37694d955"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\cal1_subreport4_1_1_3.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="290" y="0" width="20" height="181" uuid="1f1c7804-efba-407d-b418-9c4f7ec4c09e"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\cal1_subreport4_1_1_4.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="324" y="0" width="20" height="181" uuid="1199fcb0-4941-4eb9-b597-56c5b64fab41"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\cal1_subreport4_1_1_5.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="356" y="0" width="20" height="181" uuid="a7baa6ea-4374-49ce-8654-1eaac59dac26"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\cal1_subreport4_1_1_6.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="388" y="0" width="20" height="181" uuid="d3e1e1d4-195a-4ee8-891d-999d5ee9b7be"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\cal1_subreport4_1_1_7.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="468" y="0" width="25" height="181" uuid="2a6285c1-e4f0-4571-a994-b207689bdf7f"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\pm1_1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="494" y="0" width="25" height="181" uuid="1a2ee8b1-84fa-465f-a6d3-b48e1f8c8793"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\pm1_1_1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="520" y="0" width="25" height="181" uuid="129c4a91-ea36-4060-8187-5310fa2393d6"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\pm1_1_2.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="546" y="0" width="24" height="181" uuid="288b40a0-c44b-4879-b9d4-130aa143269d"/>
+				<subreportParameter name="curp_entrada">
+					<subreportParameterExpression><![CDATA[$P{curp_entrada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\victormanuel\\Desktop\\RUIPI\\RUIPI-master\\src\\Reportes\\subreporte4\\pm1_1_3.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="97" y="0" width="25" height="20" uuid="899cb1c0-53e3-4df1-a2a5-36662a9d1302"/>
+				<textFieldExpression><![CDATA[$F{calif1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="20" width="26" height="20" uuid="c8de1175-769e-43e0-afa6-c489909a74ca"/>
+				<textFieldExpression><![CDATA[$F{calif2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="40" width="26" height="20" uuid="1a9960fe-b232-4ab3-8962-c0f11bfbc3bb"/>
+				<textFieldExpression><![CDATA[$F{calif3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="60" width="26" height="20" uuid="e744530e-ecaf-43ef-9f05-fdbb0b8781b0"/>
+				<textFieldExpression><![CDATA[$F{calif4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="80" width="26" height="20" uuid="514303b6-20c1-4c03-95dd-903cfe528fd8"/>
+				<textFieldExpression><![CDATA[$F{calif5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="100" width="26" height="20" uuid="8f4d5b17-c698-462e-87d9-0fdda71cce6d"/>
+				<textFieldExpression><![CDATA[$F{calif6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="97" y="120" width="25" height="20" uuid="6e5f4288-397d-40f6-8bf6-8cd6d15b21ec"/>
+				<textFieldExpression><![CDATA[$F{calif7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="140" width="26" height="20" uuid="8dc1e987-5f3e-4a50-b774-ccb1f3fea901"/>
+				<textFieldExpression><![CDATA[$F{calif8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="97" y="161" width="26" height="20" uuid="12cea363-f49a-43c2-8ecc-1ba6a1425a85"/>
+				<textFieldExpression><![CDATA[$F{promedio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

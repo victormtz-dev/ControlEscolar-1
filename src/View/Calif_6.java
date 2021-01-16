@@ -48,8 +48,6 @@ public class Calif_6 extends javax.swing.JInternalFrame {
        DefaultComboBoxModel CB_m = new DefaultComboBoxModel(mes.mostrarMes());
        cbx_mes.setModel(CB_m);
         
-        DefaultComboBoxModel CB_t = new DefaultComboBoxModel(periodo.mostrarPeriodo());
-        cbx_trimestre.setModel(CB_t);
         
 //        mostrarDatosConTableModel();
 //        validar();
@@ -60,7 +58,7 @@ public class Calif_6 extends javax.swing.JInternalFrame {
     public void validarvacios(){
             if(txt_cal1.getText().isEmpty() || txt_cal2.getText().isEmpty() || txt_cal3.getText().isEmpty() || txt_curp.getText().isEmpty() ||
                 txt_cal4.getText().isEmpty() || txt_cal5.getText().isEmpty() || txt_cal6.getText().isEmpty() 
-                || txt_cal8.getText().isEmpty() || txt_cal9.getText().isEmpty() || txt_ina.getText().isEmpty() || txt_cal10.getText().isEmpty() || txt_cal11.getText().isEmpty()){
+                || txt_cal8.getText().isEmpty() ||  txt_ina.getText().isEmpty() ){
                 btn_registrar.setEnabled(false);
         }else {
                 btn_registrar.setEnabled(true);
@@ -112,10 +110,6 @@ public class Calif_6 extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        txt_cal10 = new javax.swing.JTextField();
         txt_cal2 = new javax.swing.JTextField();
         txt_cal3 = new javax.swing.JTextField();
         txt_cal4 = new javax.swing.JTextField();
@@ -123,18 +117,16 @@ public class Calif_6 extends javax.swing.JInternalFrame {
         txt_cal6 = new javax.swing.JTextField();
         txt_cal7 = new javax.swing.JTextField();
         txt_cal8 = new javax.swing.JTextField();
-        txt_cal9 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         txt_ina = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_o = new javax.swing.JTextArea();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         txt_cal1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txt_cal11 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -287,43 +279,29 @@ public class Calif_6 extends javax.swing.JInternalFrame {
         jLabel12.setText("Trimestre:");
         Panel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, -1, -1));
 
+        cbx_mes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbx_mesItemStateChanged(evt);
+            }
+        });
         Panel1.add(cbx_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 90, -1));
 
         Panel1.add(cbx_trimestre, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 50, 70, -1));
 
-        jLabel1.setText("Educacion Sociemocional:");
-        Panel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+        jLabel1.setText("Geografia:");
+        Panel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         jLabel3.setText("jLabel3");
         Panel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, -1, -1));
 
-        jLabel5.setText("Lengua materna:");
-        Panel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        jLabel5.setText("Educacion artistica:");
+        Panel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
         jLabel9.setText("Matematicas:");
-        Panel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+        Panel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
-        jLabel10.setText("Educacion fisica:");
-        Panel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
-
-        jLabel11.setText("Formacion civica y etica:");
-        Panel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
-
-        jLabel13.setText("Ingles:");
-        Panel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
-
-        jLabel15.setText("Vida saludable:");
-        Panel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
-
-        txt_cal10.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_cal10KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_cal10KeyTyped(evt);
-            }
-        });
-        Panel1.add(txt_cal10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 60, -1));
+        jLabel10.setText("Historia:");
+        Panel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
 
         txt_cal2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -395,16 +373,6 @@ public class Calif_6 extends javax.swing.JInternalFrame {
         });
         Panel1.add(txt_cal8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 60, -1));
 
-        txt_cal9.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_cal9KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_cal9KeyTyped(evt);
-            }
-        });
-        Panel1.add(txt_cal9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 60, -1));
-
         jLabel16.setText("Inasistencias:");
         Panel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 210, -1, -1));
 
@@ -422,20 +390,20 @@ public class Calif_6 extends javax.swing.JInternalFrame {
         jLabel17.setText("Observaciones:");
         Panel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, 120, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txt_o.setColumns(20);
+        txt_o.setRows(5);
+        jScrollPane2.setViewportView(txt_o);
 
         Panel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, 270, -1));
 
-        jLabel18.setText("Ciencias naturales:");
-        Panel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jLabel18.setText("Formacion civica y etica:");
+        Panel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
-        jLabel19.setText("Geografia:");
+        jLabel19.setText("Ciencias naturales:");
         Panel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        jLabel20.setText("Historia:");
-        Panel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, -1));
+        jLabel20.setText("Educacion fisica:");
+        Panel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
 
         txt_cal1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -447,18 +415,8 @@ public class Calif_6 extends javax.swing.JInternalFrame {
         });
         Panel1.add(txt_cal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 60, -1));
 
-        jLabel2.setText("Artes:");
-        Panel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, -1, -1));
-
-        txt_cal11.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_cal11KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_cal11KeyTyped(evt);
-            }
-        });
-        Panel1.add(txt_cal11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 60, -1));
+        jLabel2.setText("Español:");
+        Panel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -556,10 +514,11 @@ public class Calif_6 extends javax.swing.JInternalFrame {
         
         int id = 0, grado_ = 6, mes_, periodo_, inasistencia_;
         double cal1, cal2, cal3, cal4, cal5, cal6, cal7, cal8, cal9, cal10, cal11;
-        String curp_;
-
+        String curp_,obser_;
+        boolean mes1, mes2,mes3,mes4,mes5,mes6,mes7,mes8,mes9,mes10;
         try {
-        
+         
+            obser_ = txt_o.getText();
             curp_ = txt_curp.getText();
             cal1 = Double.parseDouble(txt_cal1.getText());
             cal2 = Double.parseDouble(txt_cal2.getText());
@@ -569,99 +528,120 @@ public class Calif_6 extends javax.swing.JInternalFrame {
             cal6 = Double.parseDouble(txt_cal6.getText());
             cal7 = Double.parseDouble(txt_cal7.getText());
             cal8 = Double.parseDouble(txt_cal8.getText());
-            cal9 = Double.parseDouble(txt_cal9.getText());
-            cal10 = Double.parseDouble(txt_cal10.getText());
-            cal11 = Double.parseDouble(txt_cal11.getText());
+        
             mes_ = mes.getId();
             periodo_ = periodo.getId();
             inasistencia_ = Integer.parseInt(txt_ina.getText());
+            Conexion con = new Conexion();
             
-            if(cal1<5 || cal1 >10){
-                    JOptionPane.showMessageDialog(null,
-	            "Error en el Ingreso de Calificaciones", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                    txt_cal1.setText("");
-                    validarvacios();
-                            
-            }else if(cal2<5 || cal2 >10){
-                    JOptionPane.showMessageDialog(null,
-	            "Error en el Ingreso de Calificaciones", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                    txt_cal2.setText("");
-                    validarvacios();
-                            
-            }else if(cal3<5 || cal3 >10){
-                    JOptionPane.showMessageDialog(null,
-	            "Error en el Ingreso de Calificaciones", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                    txt_cal3.setText("");
-                    validarvacios();
-                            
-            }else if(cal4<5 || cal4 >10){
-                    JOptionPane.showMessageDialog(null,
-	            "Error en el Ingreso de Calificaciones", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                    txt_cal4.setText("");
-                    validarvacios();
-                            
-            }else if(cal5<5 || cal5 >10){
-                    JOptionPane.showMessageDialog(null,
-	            "Error en el Ingreso de Calificaciones", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                    txt_cal5.setText("");
-                    validarvacios();
-                            
-            }else if(cal6<5 || cal6 >10){
-                    JOptionPane.showMessageDialog(null,
-	            "Error en el Ingreso de Calificaciones", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                    txt_cal6.setText("");
-                    validarvacios();
-                            
-            }else if(cal7<5 || cal7 >10){
-                    JOptionPane.showMessageDialog(null,
-	            "Error en el Ingreso de Calificaciones", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                    txt_cal7.setText("");
-                    validarvacios();
-                            
-            }else if(cal8<5 || cal8 >10){
-                    JOptionPane.showMessageDialog(null,
-	            "Error en el Ingreso de Calificaciones", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                    txt_cal10.setText("");
-                    validarvacios();
-                            
-            }else if(cal9<5 || cal9 >10){
-                    JOptionPane.showMessageDialog(null,
-	            "Error en el Ingreso de Calificaciones", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                    txt_cal9.setText("");
-                    validarvacios();
-                            
-            }else if(cal10<5 || cal10 >10){
-                    JOptionPane.showMessageDialog(null,
-	            "Error en el Ingreso de Calificaciones", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                    txt_cal10.setText("");
-                    validarvacios();
-                            
-            }else if(cal11<5 || cal11 >10){
-                    JOptionPane.showMessageDialog(null,
-	            "Error en el Ingreso de Calificaciones", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                    txt_cal11.setText("");
-                    validarvacios();
-                            
-            }
-            else{
+             Statement st2 = con.getConnection().createStatement(); 
+            
+             
+             
+            
+            //SI EL MES SELECCIONADO NO HA SIDO CAPTURADO
+            
+             if(mes_ == 7)
+             {
+                 validar_mes();
+             }
+             
+              
+                  
+              if(mes_ == 8){    
+              ResultSet r2= st2.executeQuery("SELECT * FROM calificaciones6 where curp='"+curp_+"' and id_mes='7';"); 
+              if (r2.next()){  mes2=true;  
+                 validar_mes();
+            
+              
+              }
+              else{JOptionPane.showMessageDialog(null, "PRIMERO CAPTURE LAS CALIFICACIONES DE DIAGNÓSTICO"); mes2=false;}
+              }//FIN IF SEPTIEMBRE
+              
+               if(mes_ == 9){
+              ResultSet r3= st2.executeQuery("SELECT * FROM calificaciones6 where curp='"+curp_+"' and id_mes='8';"); 
+              if (r3.next()){  mes3=true;  
+                 
+              validar_mes();
+            
+         }
+              
+              else{JOptionPane.showMessageDialog(null, "PRIMERO CAPTURE LAS CALIFICACIONES DE DE LOS MESES ANTERIORES"
+                      + "DE MANERA CONSECUTIVA"); mes3=false;}
+                 }//FIN IF OCTUBRE
+               
+               
+              else if(mes_ == 10){
+              ResultSet r4= st2.executeQuery("SELECT * FROM calificaciones6 where curp='"+curp_+"' and id_mes='9';"); 
+              if (r4.next()){  mes4=true; 
+              validar_mes();
+        
+              }
+              else{JOptionPane.showMessageDialog(null, "PRIMERO CAPTURE LAS CALIFICACIONES DE DE LOS MESES ANTERIORES"
+                      + "DE MANERA CONSECUTIVA"); mes4=false;
+              
+               }
+                 }//FIN IF NOV/DIC
+               
+               else if(mes_ == 1){
+              ResultSet r5= st2.executeQuery("SELECT * FROM calificaciones6 where curp='"+curp_+"' and id_mes='10';"); 
+              if (r5.next()){  mes5=true; 
+              validar_mes();
                 
-              cali.registrarCalificacion6(1, id, curp_, grado_, cal1, cal2, cal3, cal4, cal5, cal6, cal7, cal8, cal9, cal10, cal11, mes_, periodo_);
-              cali.registrarInasistencia(1, id, curp_, grado_, inasistencia_, mes_, periodo_);
-              limpiar();
-              validarvacios();
             }
+              else{JOptionPane.showMessageDialog(null, "PRIMERO CAPTURE LAS CALIFICACIONES DE DE LOS MESES ANTERIORES"
+                      + "DE MANERA CONSECUTIVA"); mes5=false;}
+                 }//FIN IF ENERO
+               
+               else if(mes_ == 2){
+              ResultSet r6= st2.executeQuery("SELECT * FROM calificaciones6 where curp='"+curp_+"' and id_mes='1';"); 
+              if (r6.next()){  mes6=true; 
+              
+                validar_mes();
             
+              }
+              else{JOptionPane.showMessageDialog(null, "PRIMERO CAPTURE LAS CALIFICACIONES DE DE LOS MESES ANTERIORES"
+                      + "DE MANERA CONSECUTIVA"); mes6=false;}
+                 }//FIN IF FEBRERO
+               
+               else if(mes_ == 3){
+              ResultSet r7= st2.executeQuery("SELECT * FROM calificaciones6 where curp='"+curp_+"' and id_mes='2';"); 
+              if (r7.next()){  mes7=true;  
+              validar_mes();
+              }
+              else{JOptionPane.showMessageDialog(null, "PRIMERO CAPTURE LAS CALIFICACIONES DE DE LOS MESES ANTERIORES"
+                      + "DE MANERA CONSECUTIVA"); mes7=false;}
+                 }//FIN IF MARZO
+               
+               else if(mes_ == 4){
+              ResultSet r8= st2.executeQuery("SELECT * FROM calificaciones6 where curp='"+curp_+"' and id_mes='3';"); 
+              if (r8.next()){  mes8=true;
+            validar_mes();
+              }
+              else{JOptionPane.showMessageDialog(null, "PRIMERO CAPTURE LAS CALIFICACIONES DE DE LOS MESES ANTERIORES"
+                      + "DE MANERA CONSECUTIVA"); mes8=false;}
+                 }//FIN IF ABRIL
+               
+               else if(mes_ == 5){
+              ResultSet r9= st2.executeQuery("SELECT * FROM calificaciones6 where curp='"+curp_+"' and id_mes='4';"); 
+              if (r9.next()){  mes9=true; 
+              validar_mes();
+             }
+              else{JOptionPane.showMessageDialog(null, "PRIMERO CAPTURE LAS CALIFICACIONES DE DE LOS MESES ANTERIORES"
+                      + "DE MANERA CONSECUTIVA"); mes9=false;}
+                 }//FIN IF MAYO
+               
+                else if(mes_ == 6){
+              ResultSet r10= st2.executeQuery("SELECT * FROM calificaciones6 where curp='"+curp_+"' and id_mes='5';"); 
+              if (r10.next()){  mes10=true; 
+              validar_mes();
+           
+              }
+              else{JOptionPane.showMessageDialog(null, "PRIMERO CAPTURE LAS CALIFICACIONES DE DE LOS MESES ANTERIORES"
+                      + "DE MANERA CONSECUTIVA"); mes10=false;}
+                 }//FIN IF JUNIO
+               
+ 
       
         }catch (Exception ex) {
 	   JOptionPane.showMessageDialog(null,
@@ -674,16 +654,6 @@ public class Calif_6 extends javax.swing.JInternalFrame {
     private void txt_curpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_curpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_curpActionPerformed
-
-    private void txt_cal10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cal10KeyTyped
-        // TODO add your handling code here:
-
-        validar(evt);
-        
-        if(txt_cal10.getText().length() >= 3){
-        evt.consume();
-        }
-    }//GEN-LAST:event_txt_cal10KeyTyped
 
     private void txt_cal2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cal2KeyTyped
         // TODO add your handling code here:
@@ -749,26 +719,11 @@ public class Calif_6 extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txt_cal8KeyTyped
 
-    private void txt_cal9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cal9KeyTyped
-        // TODO add your handling code here:
-         validar(evt);
-
-        
-        if(txt_cal9.getText().length() >= 3){
-        evt.consume();
-        }
-    }//GEN-LAST:event_txt_cal9KeyTyped
-
     private void txt_inaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_inaKeyTyped
         // TODO add your handling code here:
         validar(evt);
         
     }//GEN-LAST:event_txt_inaKeyTyped
-
-    private void txt_cal10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cal10KeyReleased
-        // TODO add your handling code here:
-        validarvacios();
-    }//GEN-LAST:event_txt_cal10KeyReleased
 
     private void txt_cal2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cal2KeyReleased
         // TODO add your handling code here:
@@ -805,11 +760,6 @@ public class Calif_6 extends javax.swing.JInternalFrame {
         validarvacios();
     }//GEN-LAST:event_txt_cal8KeyReleased
 
-    private void txt_cal9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cal9KeyReleased
-        // TODO add your handling code here:
-        validarvacios();
-    }//GEN-LAST:event_txt_cal9KeyReleased
-
     private void txt_inaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_inaKeyReleased
         // TODO add your handling code here:
         validarvacios();
@@ -824,24 +774,21 @@ public class Calif_6 extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         validar(evt);
         
-        if(txt_cal10.getText().length() >= 3){
+        if(txt_cal1.getText().length() >= 3){
         evt.consume();
         }
     }//GEN-LAST:event_txt_cal1KeyTyped
 
-    private void txt_cal11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cal11KeyReleased
+    private void cbx_mesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbx_mesItemStateChanged
         // TODO add your handling code here:
-        validarvacios();
-    }//GEN-LAST:event_txt_cal11KeyReleased
-
-    private void txt_cal11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cal11KeyTyped
-        // TODO add your handling code here:
-         validar(evt);
-        
-        if(txt_cal10.getText().length() >= 3){
-        evt.consume();
-        }
-    }//GEN-LAST:event_txt_cal11KeyTyped
+          if (evt.getStateChange() == ItemEvent.SELECTED) {
+              Mes m = (Mes) cbx_mes.getSelectedItem();
+              Periodo pe = new Periodo();
+               DefaultComboBoxModel CB_t = new DefaultComboBoxModel(pe.mostrarPeriodo_anidado(m.getId()));
+                cbx_trimestre.setModel(CB_t);
+              
+}
+    }//GEN-LAST:event_cbx_mesItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -854,10 +801,7 @@ public class Calif_6 extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbx_trimestre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -875,12 +819,9 @@ public class Calif_6 extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTable table_alumno;
     private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_cal1;
-    private javax.swing.JTextField txt_cal10;
-    private javax.swing.JTextField txt_cal11;
     private javax.swing.JTextField txt_cal2;
     private javax.swing.JTextField txt_cal3;
     private javax.swing.JTextField txt_cal4;
@@ -888,9 +829,9 @@ public class Calif_6 extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_cal6;
     private javax.swing.JTextField txt_cal7;
     private javax.swing.JTextField txt_cal8;
-    private javax.swing.JTextField txt_cal9;
     private javax.swing.JTextField txt_curp;
     private javax.swing.JTextField txt_ina;
+    private javax.swing.JTextArea txt_o;
     // End of variables declaration//GEN-END:variables
 
 
@@ -925,8 +866,7 @@ public void buscar(String x) {
 public void limpiar(){
                 txt_ina.setText("");
                 txt_cal1.setText("");
-                txt_cal10.setText("");
-                txt_cal11.setText("");
+               
 		txt_cal2.setText("");
                 txt_cal3.setText("");
                 txt_curp.setText("");
@@ -937,14 +877,113 @@ public void limpiar(){
                 txt_cal6.setText("");
                 txt_cal7.setText("");
                 txt_cal8.setText("");
-                txt_cal9.setText("");
+        
                 txt_buscar.setText("");
                 btn_registrar.setEnabled(false);
     
     
-    
-
+ 
 }
 
+public void validar_mes(){
+     Mes mes = (Mes) cbx_mes.getSelectedItem(); //selecciona el dato que este en el combobox
+        Periodo periodo = (Periodo) cbx_trimestre.getSelectedItem(); //selecciona el dato que este en el combobox
+        
+        int id = 0, grado_ = 6, mes_, periodo_, inasistencia_;
+        double cal1, cal2, cal3, cal4, cal5, cal6, cal7, cal8, cal9, cal10, cal11;
+        String curp_,obser_;
+
+        try {
+         
+            obser_ = txt_o.getText();
+            curp_ = txt_curp.getText();
+            cal1 = Double.parseDouble(txt_cal1.getText());
+            cal2 = Double.parseDouble(txt_cal2.getText());
+            cal3 = Double.parseDouble(txt_cal3.getText());
+            cal4 = Double.parseDouble(txt_cal4.getText());
+            cal5 = Double.parseDouble(txt_cal5.getText());
+            cal6 = Double.parseDouble(txt_cal6.getText());
+            cal7 = Double.parseDouble(txt_cal7.getText());
+            cal8 = Double.parseDouble(txt_cal8.getText());
+        
+            mes_ = mes.getId();
+            periodo_ = periodo.getId();
+            inasistencia_ = Integer.parseInt(txt_ina.getText());
+            
+            if(cal1<5 || cal1 >10){
+                    JOptionPane.showMessageDialog(null,
+	            "Error en el Ingreso de Calificaciones", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                    txt_cal1.setText("");
+                    validarvacios();
+                            
+            }else if(cal2<5 || cal2 >10){
+                    JOptionPane.showMessageDialog(null,
+	            "Error en el Ingreso de Calificaciones", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                    txt_cal2.setText("");
+                    validarvacios();
+                            
+            }else if(cal3<5 || cal3 >10){
+                    JOptionPane.showMessageDialog(null,
+	            "Error en el Ingreso de Calificaciones", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                    txt_cal3.setText("");
+                    validarvacios();
+                            
+            }else if(cal4<5 || cal4 >10){
+                    JOptionPane.showMessageDialog(null,
+	            "Error en el Ingreso de Calificaciones", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                    txt_cal4.setText("");
+                    validarvacios();
+                            
+            }else if(cal5<5 || cal5 >10){
+                    JOptionPane.showMessageDialog(null,
+	            "Error en el Ingreso de Calificaciones", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                    txt_cal5.setText("");
+                    validarvacios();
+                            
+            }else if(cal6<5 || cal6 >10){
+                    JOptionPane.showMessageDialog(null,
+	            "Error en el Ingreso de Calificaciones", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                    txt_cal6.setText("");
+                    validarvacios();
+                            
+            }else if(cal7<5 || cal7 >10){
+                    JOptionPane.showMessageDialog(null,
+	            "Error en el Ingreso de Calificaciones", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                    txt_cal7.setText("");
+                    validarvacios();
+                            
+            }else if(cal8<5 || cal8 >10){
+                    JOptionPane.showMessageDialog(null,
+	            "Error en el Ingreso de Calificaciones", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                    txt_cal8.setText("");
+                    validarvacios();
+                            
+           
+            }
+            else{
+                
+              cali.registrarCalificacion6(1, id, curp_, grado_, cal1, cal2, cal3, cal4, cal5, cal6, cal7, cal8, mes_, periodo_);
+              cali.registrarInasistencia(1, id, curp_, grado_, inasistencia_, mes_, periodo_);
+              cali.registrarObservaciones(1, id, curp_, grado_, obser_, mes_, periodo_);
+              limpiar();
+              validarvacios();
+            }
+            
+      
+        }catch (Exception ex) {
+	   JOptionPane.showMessageDialog(null,
+	   "Error en el Ingreso de Datos, Revise si no hay campos sin rellenar", "Error",
+	    JOptionPane.ERROR_MESSAGE);
+        } 
+    
+}
 
 }

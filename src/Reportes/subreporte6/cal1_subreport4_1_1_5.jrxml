@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cal1_subreport3" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3540a75d-d3a5-4068-aa47-842a82504682">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="curp_entrada" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.apellido_paterno, a.apellido_materno, a.nombre, c.calif1, 
+c.calif2, c.calif3, c.calif4, c.calif5, c.calif6, c.calif7,c.calif8,
+round(((c.calif1+c.calif2+c.calif3+c.calif4+c.calif5+c.calif6+c.calif7+c.calif8)/8),1) as promedio
+from calificaciones6 as c, alumno as a
+where c.curp = a.curp and c.curp = $P!{curp_entrada} and c.id_mes='4']]>
+	</queryString>
+	<field name="apellido_paterno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellido_materno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif1" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif2" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif3" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif4" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif5" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif6" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif7" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="calif8" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="promedio" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="180" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="31" height="20" uuid="086b113d-4867-4c02-afb4-7d60995326a3"/>
+				<textFieldExpression><![CDATA[$F{calif1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="20" width="31" height="20" uuid="00071735-0c04-4d60-992a-73742dfb5717"/>
+				<textFieldExpression><![CDATA[$F{calif2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="40" width="31" height="20" uuid="5286d9b4-fdc5-4937-8a06-82242fc70a0a"/>
+				<textFieldExpression><![CDATA[$F{calif3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="60" width="31" height="20" uuid="86c5986e-34d9-489f-b069-6c84f29ee411"/>
+				<textFieldExpression><![CDATA[$F{calif4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="80" width="31" height="20" uuid="f6dc97b5-171e-48f1-a0a2-1748afaf21fc"/>
+				<textFieldExpression><![CDATA[$F{calif5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="100" width="31" height="20" uuid="0a9eabb9-9c18-47b4-8611-35411e0963a2"/>
+				<textFieldExpression><![CDATA[$F{calif6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="120" width="31" height="20" uuid="7c25cbc6-3227-47d6-a080-62738049df88"/>
+				<textFieldExpression><![CDATA[$F{calif7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="140" width="31" height="20" uuid="0b80c77e-d62f-40b5-838f-93f9d593a229"/>
+				<textFieldExpression><![CDATA[$F{calif8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="160" width="31" height="20" uuid="c4124f38-d167-4c42-9a35-09dca562d055"/>
+				<textFieldExpression><![CDATA[$F{promedio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
